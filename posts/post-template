@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>{{ POST_TITLE }} – Digital Prairie Enterprises Blog</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header>
+    <h1>Digital Prairie Enterprises</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/blog.html">Blog</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+  </header>
+  <main class="products" style="margin-top:2em;">
+    <article class="product-item">
+      <h2>{{ POST_TITLE }}</h2>
+      <p class="blog-meta">
+        <time datetime="{{ POST_DATE }}">{{ POST_DATE_PRETTY }}</time>
+        &middot; <span class="blog-author">{{ POST_AUTHOR }}</span>
+      </p>
+      <section class="blog-summary">
+        <p>{{ POST_SUMMARY }}</p>
+      </section>
+      <section class="blog-content">
+        <!-- Blog content goes here -->
+        {{ POST_CONTENT }}
+      </section>
+    </article>
+  </main>
+  <footer>
+    &copy; {{ YEAR }} Digital Prairie Enterprises. All rights reserved.
+  </footer>
+</body>
+</html>
