@@ -1,6 +1,74 @@
-<!--
-Generate the full products page using the design-brief.md and copy-content.md files
-Use the styling in styles.css
-Use the logo in assets/logo.jpeg
-Generate individual entries for each product
--->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Our Products | Digital Prairie Enterprises</title>
+  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <header>
+    <h1>Digital Prairie Enterprises</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-logo">
+      <img src="assets/logo.jpeg" alt="Digital Prairie Enterprises Logo">
+    </div>
+    <div class="hero-content">
+      <h2 class="hero-title">Craftsmanship that Lasts</h2>
+      <p class="hero-subtitle">A family of honest tools—thoughtfully built to help you think clearer, map your ideas, and build habits that grow stronger over time.</p>
+      <a href="#products" class="cta-btn">See Our Products</a>
+    </div>
+  </section>
+
+  <main>
+    <section id="products" class="products">
+      <h2>Our Products</h2>
+      <div class="product-list">
+        <!-- Mindweave -->
+        <div class="product-item">
+          <h3>Mindweave <span style="font-size:0.7em;color:var(--cowboy-dark);">(working title)</span></h3>
+          <p>
+            A quiet place to catch your thoughts before they blow away.<br>
+            Mindweave helps you gather ideas, sort through them, and see what they’re trying to tell you.<br>
+            No noise. No clutter. Just a clean space built for honest thinking.
+          </p>
+        </div>
+        <!-- Emergent MindMap -->
+        <div class="product-item">
+          <h3>Emergent MindMap <span style="font-size:0.7em;color:var(--cowboy-dark);">(working title)</span></h3>
+          <p>
+            A wide-open field for exploring ideas.<br>
+            You can lay out thoughts, shift them around, and watch new connections rise up.<br>
+            It’s built for folks who like to see the shape of their thinking, not just read it.
+          </p>
+        </div>
+        <!-- Habit-Building Tools -->
+        <div class="product-item">
+          <h3>Habit-Building Tools <span style="font-size:0.7em;color:var(--cowboy-dark);">(working titles)</span></h3>
+          <p>
+            We’re shaping two small, steady companions that help people build habits that last.<br>
+            Nothing flashy. Nothing loud.<br>
+            Just simple tools that nudge you in the right direction and keep you moving.
+          </p>
+        </div>
+      </div>
+      <div style="margin-top:2em;text-align:center;color:var(--prairie-green);font-weight:bold;">
+        These apps are just the first fenceposts.<br>
+        In time, our digital homestead will grow into tools for learning, creating, training, and steady personal growth.<br>
+        We’re not in a hurry. We’re building it right.
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2026 Digital Prairie Enterprises. Built with prairie roots in Eastland, Texas.
+  </footer>
+</body>
+</html>
