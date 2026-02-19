@@ -1,7 +1,117 @@
 <!--
-Generate the full "About" with sections for "Our Story" and "Our People"
-Use the logo in /assets/logo.jpeg
-For the entry on Allen Goodner in "Our People" use the headshot in assets/headshot.jpg
-Use the copy in copy-content.md as a starting point
-Use the styles in styles.css
+Full About page, incorporating "Our Story" and "Our People"
+- Uses logo at /assets/logo.jpeg
+- Allen Goodner's headshot at /assets/headshot.jpg
+- Text adapted from copy-content.md
+- Styles as in styles.css
 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>About Us | Digital Prairie Enterprises</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="hero">
+      <div class="hero-logo">
+        <img src="assets/logo.jpeg" alt="Digital Prairie Enterprises Logo">
+      </div>
+      <div class="hero-content">
+        <h1 class="hero-title">About Us</h1>
+        <p class="hero-subtitle">
+          Prairie Roots. Modern Tools.<br>
+          Built the Right Way.
+        </p>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/about.html" aria-current="page">About</a>
+          <a href="/products.html">Products</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Our Story Section -->
+    <section class="values">
+      <h2>Our Story</h2>
+      <div class="value-list">
+        <div class="value-item">
+          <p>
+            Digital Prairie Enterprises was born in Eastland, Texas, where folks still believe in steady work, clear thinking, and keeping your word. That&rsquo;s the ground we stand on, and it shapes every tool we build.
+          </p>
+          <p>
+            We&rsquo;re a small studio with a long view. Our work centers on a multi-app ecosystem built to help people think straighter, map their ideas, and build habits that hold up over time. The first pieces include:
+            <ul>
+              <li><strong>Mindweave</strong> &mdash; a clean, quiet place to catch your thoughts and make sense of them</li>
+              <li><strong>Emergent MindMap</strong> &mdash; a wide-open space for exploring ideas and seeing how they fit together</li>
+              <li><strong>Habit-Building Tools</strong> &mdash; simple, steady companions that help folks grow in ways that last</li>
+            </ul>
+            Each tool stands on its own, but they&rsquo;re all cut from the same cloth: honest design, solid engineering, and a respect for the people who use them.
+          </p>
+        </div>
+        <div class="value-item">
+          <h3>A Broader Frontier</h3>
+          <p>
+            Software is only the first fencepost.<br>
+            Digital Prairie Enterprises is laying out a polytechnical homestead—a place where learning, creativity, and steady growth all live under the same sky. In time, this will stretch beyond apps into:
+          </p>
+          <ul>
+            <li>practical education</li>
+            <li>creative tools</li>
+            <li>training and workshops</li>
+            <li>other work that helps folks build better lives</li>
+          </ul>
+          <p>
+            We&rsquo;re not chasing trends. We&rsquo;re building something meant to last.
+          </p>
+        </div>
+        <div class="value-item">
+          <h3>How We See the Work</h3>
+          <p>
+            We believe good tools should feel like good neighbors—helpful, dependable, and never in the way. We believe technology ought to make life clearer, not louder. And we believe small towns can build big things when the work is honest and the foundation is strong.
+          </p>
+          <p>
+            Digital Prairie Enterprises crafts tools that stand steady in a noisy world. Tools with a Texas backbone.<br>
+            Tools built for folks who want to think, learn, and grow with purpose.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our People Section -->
+    <section class="products">
+      <h2>Our People</h2>
+      <div class="product-list">
+        <div class="product-item" style="display:flex;align-items:center;gap:1.6em;min-height:175px;">
+          <img src="assets/headshot.jpg" alt="Allen Goodner headshot" style="height:140px;width:140px;object-fit:cover;border-radius:9px;box-shadow:0 2px 8px rgba(36,28,19,0.13);background:#fff4;">
+          <div>
+            <h3 style="margin:0;padding:0 0 0.25em 0;">Allen Goodner <span style="font-weight:normal;color:var(--prairie-green);font-size:0.7em;">Founder &amp; Senior Architect</span></h3>
+            <p style="font-style:italic;margin:0 0 0.25em 0;">Eastland, Texas</p>
+            <p style="margin:0;">
+              Allen has deep roots in Eastland County—four generations and more have made their homes in Cisco, Eastland, and Ranger. Even when he wasn’t living here, this place stayed with him. He’s a Christian, a husband, and a father, and he carries those roles with quiet pride. His family’s long history in this county shows up in the way he works—steady, honest, and built for the long haul.
+            </p>
+            <p style="margin:0.5em 0 0 0;">
+              He’s spent years at the crossroads of software engineering and people leadership, guiding teams, shaping products, and helping folks grow. Allen thinks hard about how tools should serve people, not the other way around. He’s known for clear thinking, careful planning, and a knack for turning complex ideas into something you can actually use.
+            </p>
+            <p style="margin:0.5em 0 0 0;">
+              Around here, he’s the one setting the fenceposts—designing the systems, shaping the vision, and keeping the work pointed in the right direction. As Digital Prairie grows, he’ll make sure every new hand who joins the outfit shares the same backbone of faith, craft, and care.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div>
+      &copy; Digital Prairie Enterprises. Built in Eastland, Texas.
+    </div>
+  </footer>
+</body>
+</html>
