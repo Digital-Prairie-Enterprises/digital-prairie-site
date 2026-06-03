@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lost on the Prairie · Digital Prairie Enterprises</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --night:#0e1624;--amber:#c8832a;--amber-light:#e8a84a;
+  --cream:#f5f0e8;--warm-white:#faf8f4;--dust:#b8a898;
+  --serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',sans-serif;
+}
+body{background:var(--night);color:var(--cream);font-family:var(--sans);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3rem 2rem;position:relative;overflow:hidden}
+body::before{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(200,131,42,0.06) 0%,transparent 70%)}
+.err-eyebrow{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:1rem;position:relative}
+h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,5rem);color:var(--cream);line-height:1.1;margin-bottom:0.5rem;position:relative}
+h1 em{font-style:italic;color:var(--amber-light)}
+.sub{font-size:1rem;color:rgba(245,240,232,0.45);font-weight:300;margin-bottom:2.5rem;line-height:1.7;max-width:420px;position:relative}
+.actions{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;position:relative}
+.btn{display:inline-block;padding:0.85rem 2rem;text-decoration:none;font-size:0.82rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;transition:background 0.2s}
+.btn-primary{background:var(--amber);color:var(--night)}
+.btn-primary:hover{background:var(--amber-light)}
+.btn-ghost{color:var(--cream);border:1px solid rgba(245,240,232,0.2)}
+.btn-ghost:hover{border-color:var(--amber-light);color:var(--amber-light)}
+</style>
+</head>
+<body>
+  <div class="err-eyebrow">404 — Lost on the trail</div>
+  <h1>This page rode<br>off into the <em>sunset</em></h1>
+  <p class="sub">Whatever you were looking for, it's not here. Might've moved, might never have existed. Either way, the homestead is just a click away.</p>
+  <div class="actions">
+    <a href="index.html" class="btn btn-primary">Back to the homestead</a>
+    <a href="products.html" class="btn btn-ghost">See our products</a>
+  </div>
+</body>
+</html>
