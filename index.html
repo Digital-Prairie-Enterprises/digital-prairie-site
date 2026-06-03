@@ -1,91 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digital Prairie Enterprises</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Prairie Enterprises</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --night:#0e1624;--navy:#1a2b45;--amber:#c8832a;--amber-light:#e8a84a;
+  --cream:#f5f0e8;--warm-white:#faf8f4;--dust:#b8a898;--text:#1a1410;
+  --serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',sans-serif;
+}
+body{background:var(--warm-white);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden}
+nav{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;border-bottom:1px solid rgba(26,20,16,0.1);background:var(--warm-white);position:sticky;top:0;z-index:100}
+.nav-logo{font-family:var(--serif);font-size:1.1rem;color:var(--night);text-decoration:none}
+.nav-logo span{color:var(--amber)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{text-decoration:none;color:var(--text);font-size:0.85rem;font-weight:400;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;transition:opacity 0.2s}
+.nav-links a:hover{opacity:1}
+.nav-cta{background:var(--night);color:var(--cream);padding:0.5rem 1.25rem;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;font-weight:500;transition:background 0.2s}
+.nav-cta:hover{background:var(--amber)}
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:90vh;position:relative;overflow:hidden}
+.hero-left{padding:5rem 3rem;display:flex;flex-direction:column;justify-content:center;position:relative;background:var(--warm-white)}
+.hero-left::after{content:'';position:absolute;right:0;top:0;bottom:0;width:1px;background:rgba(26,20,16,0.1)}
+.hero-eyebrow{font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:1.25rem;display:flex;align-items:center;gap:0.75rem}
+.hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--amber)}
+.hero h1{font-family:var(--serif);font-size:clamp(2.6rem,4.5vw,4rem);line-height:1.12;color:var(--night);margin-bottom:1.5rem;font-weight:700}
+.hero h1 em{font-style:italic;color:var(--amber)}
+.hero-sub{font-size:1.05rem;color:#4a3f35;line-height:1.75;margin-bottom:2.25rem;max-width:440px;font-weight:300}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+.btn-primary{background:var(--night);color:var(--cream);padding:0.85rem 2rem;text-decoration:none;font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:500;transition:background 0.2s;display:inline-block}
+.btn-primary:hover{background:var(--amber)}
+.btn-ghost{color:var(--night);padding:0.85rem 2rem;text-decoration:none;font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:500;border:1px solid rgba(26,20,16,0.2);transition:border-color 0.2s,color 0.2s;display:inline-block}
+.btn-ghost:hover{border-color:var(--amber);color:var(--amber)}
+.hero-right{background:var(--night);display:flex;flex-direction:column;position:relative;overflow:hidden}
+.hero-right::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(200,131,42,0.12) 0%,transparent 70%);pointer-events:none}
+.logo-zone{flex:1;display:flex;align-items:center;justify-content:center;padding:3rem 3rem 1.5rem;border-bottom:1px solid rgba(245,240,232,0.08)}
+.logo-zone img{max-width:280px;max-height:280px;object-fit:contain;filter:drop-shadow(0 8px 40px rgba(200,131,42,0.3))}
+.product-panel{padding:2rem 2.5rem 2.5rem}
+.product-tag{font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:0.75rem}
+.product-name{font-family:var(--serif);font-size:2rem;color:var(--cream);line-height:1.1;margin-bottom:0.5rem}
+.product-name em{font-style:italic;color:var(--amber-light)}
+.product-tagline{font-size:0.9rem;color:rgba(245,240,232,0.6);margin-bottom:1.5rem;font-weight:300;line-height:1.6}
+.features{display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.5rem}
+.product-feature{display:flex;align-items:flex-start;gap:0.75rem}
+.feature-dot{width:5px;height:5px;border-radius:50%;background:var(--amber);margin-top:8px;flex-shrink:0}
+.feature-text{font-size:0.85rem;color:rgba(245,240,232,0.75);line-height:1.5}
+.product-footer{display:flex;align-items:center;justify-content:space-between}
+.product-status{display:flex;align-items:center;gap:0.75rem}
+.status-dot{width:7px;height:7px;border-radius:50%;background:#4caf82;animation:pulse 2s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.status-text{font-size:0.78rem;color:rgba(245,240,232,0.4);letter-spacing:0.05em}
+.promptme-link{color:var(--amber-light);text-decoration:none;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500}
+.promptme-link:hover{color:var(--amber)}
+.fence-line{display:flex;align-items:center;gap:1.5rem;padding:0 3rem}
+.fence-line::before,.fence-line::after{content:'';flex:1;height:1px;background:rgba(26,20,16,0.1)}
+.fence-mark{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--dust);white-space:nowrap;padding:1.25rem 0}
+.values{padding:5rem 3rem;background:var(--cream)}
+.section-eyebrow{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:0.75rem}
+.section-title{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);color:var(--night);line-height:1.2;margin-bottom:3.5rem}
+.values-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgba(26,20,16,0.12)}
+.value-card{padding:2rem 1.75rem;border-right:1px solid rgba(26,20,16,0.12)}
+.value-card:last-child{border-right:none}
+.value-letter{font-family:var(--serif);font-size:3rem;color:var(--amber);opacity:0.3;line-height:1;margin-bottom:0.5rem;font-weight:700}
+.value-name{font-family:var(--serif);font-size:1.1rem;color:var(--night);margin-bottom:0.5rem;font-weight:700}
+.value-desc{font-size:0.85rem;color:#5a4a3a;line-height:1.65;font-weight:300}
+.products{padding:5rem 3rem;background:var(--warm-white)}
+.products-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;margin-top:3.5rem}
+.product-card{border:1px solid rgba(26,20,16,0.1);padding:2rem;background:var(--warm-white);transition:border-color 0.2s,transform 0.2s;display:flex;flex-direction:column}
+.product-card:hover{border-color:var(--amber);transform:translateY(-2px)}
+.product-card.featured{background:var(--night);border-color:var(--navy)}
+.pc-tag{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:0.75rem}
+.pc-name{font-family:var(--serif);font-size:1.3rem;margin-bottom:0.75rem;font-weight:700;color:var(--night)}
+.featured .pc-name{color:var(--cream)}
+.pc-desc{font-size:0.875rem;line-height:1.7;font-weight:300;margin-bottom:1.5rem;flex:1;color:#5a4a3a}
+.featured .pc-desc{color:rgba(245,240,232,0.6)}
+.pc-soon{font-size:0.72rem;color:var(--dust);letter-spacing:0.08em;text-transform:uppercase}
+.pc-link{font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;font-weight:500}
+.pc-link:hover{color:var(--amber)}
+.pc-link::after{content:' →'}
+.about-strip{padding:5rem 3rem;background:var(--night);display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+.about-strip h2{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.4rem);color:var(--cream);line-height:1.3;margin-bottom:1.5rem}
+.about-strip h2 em{color:var(--amber-light);font-style:italic}
+.about-strip p{color:rgba(245,240,232,0.6);line-height:1.8;font-weight:300;font-size:0.95rem;margin-bottom:1rem}
+.about-link{color:var(--amber-light);text-decoration:none;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;display:inline-block;margin-top:0.5rem}
+.about-link:hover{color:var(--amber)}
+.about-stat{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;padding-top:2.5rem;border-top:1px solid rgba(245,240,232,0.08)}
+.stat-num{font-family:var(--serif);font-size:2.5rem;color:var(--amber-light);font-weight:700;line-height:1}
+.stat-label{font-size:0.78rem;color:rgba(245,240,232,0.4);letter-spacing:0.05em;margin-top:0.4rem}
+footer{padding:2.5rem 3rem;border-top:1px solid rgba(26,20,16,0.1);display:flex;justify-content:space-between;align-items:center;background:var(--warm-white)}
+.footer-logo{font-family:var(--serif);font-size:0.95rem;color:var(--night)}
+.footer-logo span{color:var(--amber)}
+.footer-right{font-size:0.8rem;color:var(--dust)}
+.footer-right a{color:var(--amber);text-decoration:none}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.hero-left{animation:fadeUp 0.7s ease both}
+.hero-right{animation:fadeUp 0.7s 0.1s ease both}
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:flex;flex-wrap:wrap;gap:1rem}
+  .hero{grid-template-columns:1fr}
+  .hero-left::after{display:none}
+  .hero-left{padding:3rem 1.5rem}
+  .logo-zone{padding:2.5rem 1.5rem 1.5rem}
+  .logo-zone img{max-width:180px}
+  .product-panel{padding:1.5rem}
+  .values{padding:3rem 1.5rem}
+  .values-grid{grid-template-columns:1fr 1fr}
+  .value-card:nth-child(2){border-right:none}
+  .value-card:nth-child(3),.value-card:nth-child(4){border-top:1px solid rgba(26,20,16,0.12)}
+  .products{padding:3rem 1.5rem}
+  .products-grid{grid-template-columns:1fr}
+  .about-strip{grid-template-columns:1fr;gap:3rem;padding:3rem 1.5rem}
+  footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem 1.5rem}
+  .fence-line{padding:0 1.5rem}
+}
+</style>
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="products.html">Products</a>
-      <a href="blog.html">Blog</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
 
-  <section class="hero">
-    <div class="hero-logo">
-      <img src="assets/logo.jpeg" alt="Digital Prairie Enterprises Logo">
-    </div>
-    <div class="hero-content">
-      <h1 class="hero-title">Digital Prairie Enterprises</h1>
-      <p class="hero-subtitle">
-        Rugged meets futuristic.<br>
-        <span style="color:var(--neon-accent); text-shadow:0 0 8px var(--cowboy-dark);">
-          Cyber-cowboy solutions for the modern frontier.
-        </span>
-      </p>
-      <a class="cta-btn" href="products.html">Explore Our Products</a>
-    </div>
-  </section>
+<nav>
+  <a href="index.html" class="nav-logo">Digital Prairie <span>Enterprises</span></a>
+  <ul class="nav-links">
+    <li><a href="products.html">Products</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Contact</a>
+</nav>
 
-  <section class="values">
-    <h2>Our Values</h2>
-    <div class="value-list">
-      <div class="value-item">
-        <strong>Craft</strong>
-        <br>
-        We’re proud of what we do, and we do it the right way.
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Eastland, Texas</div>
+    <h1>Tools built for<br>folks who want<br>to <em>think clearly</em></h1>
+    <p class="hero-sub">Human-first software from the Texas plains. We build apps that work with the grain of how people actually think, learn, and grow.</p>
+    <div class="hero-actions">
+      <a href="products.html#promptme" class="btn-primary">See PromptMe</a>
+      <a href="about.html" class="btn-ghost">Our Story</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="logo-zone">
+      <img src="assets/logo.jpeg" alt="Digital Prairie Enterprises">
+    </div>
+    <div class="product-panel">
+      <div class="product-tag">Flagship Product · Available Now</div>
+      <div class="product-name">Prompt<em>Me</em></div>
+      <div class="product-tagline">A teleprompter that listens to you — not the other way around.</div>
+      <div class="features">
+        <div class="product-feature"><div class="feature-dot"></div><div class="feature-text">Follows your pace automatically — no foot pedals, no clickers</div></div>
+        <div class="product-feature"><div class="feature-dot"></div><div class="feature-text">Built for speakers, pastors, presenters, and creators</div></div>
+        <div class="product-feature"><div class="feature-dot"></div><div class="feature-text">Clean, distraction-free interface</div></div>
       </div>
-      <div class="value-item">
-        <strong>Community</strong>
-        <br>
-        We’re all better when we work together.
-      </div>
-      <div class="value-item">
-        <strong>Commitment</strong>
-        <br>
-        When we say it, we mean it.
-      </div>
-      <div class="value-item">
-        <strong>Clarity</strong>
-        <br>
-        Good tools make life clearer, not louder.
+      <div class="product-footer">
+        <div class="product-status">
+          <div class="status-dot"></div>
+          <div class="status-text">Live · Available now</div>
+        </div>
+        <a href="products.html#promptme" class="promptme-link">Learn more →</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="products">
-    <h2>Product Highlights</h2>
-    <div class="product-list">
-      <div class="product-item">
-        <strong>Mindweave</strong>
-        <br>
-        A gentle, comforting companion for your mindfulness journey.<br>
-        Collect your thoughts, reflect, and let them settle in a space built for honest thinking.
+<div class="fence-line"><div class="fence-mark">Prairie Roots · Modern Tools · Built the Right Way</div></div>
+
+<section class="values">
+  <div class="section-eyebrow">What we stand on</div>
+  <div class="section-title">Four words. No shortcuts.</div>
+  <div class="values-grid">
+    <div class="value-card">
+      <div class="value-letter">C</div>
+      <div class="value-name">Craft</div>
+      <div class="value-desc">We're proud of what we do, and we do it the right way — every time.</div>
+    </div>
+    <div class="value-card">
+      <div class="value-letter">C</div>
+      <div class="value-name">Community</div>
+      <div class="value-desc">We're all better when we work together. Software included.</div>
+    </div>
+    <div class="value-card">
+      <div class="value-letter">C</div>
+      <div class="value-name">Commitment</div>
+      <div class="value-desc">When we say it, we mean it. No asterisks.</div>
+    </div>
+    <div class="value-card">
+      <div class="value-letter">C</div>
+      <div class="value-name">Clarity</div>
+      <div class="value-desc">Good tools make life clearer, not louder. That's the whole idea.</div>
+    </div>
+  </div>
+</section>
+
+<section class="products">
+  <div class="section-eyebrow">The homestead</div>
+  <div class="section-title">A family of honest tools</div>
+  <div class="products-grid" style="grid-template-columns:repeat(4,1fr)">
+    <div class="product-card featured">
+      <div class="pc-tag">Flagship · Available now</div>
+      <div class="pc-name">PromptMe</div>
+      <div class="pc-desc">A listening teleprompter. Speak at your own pace — PromptMe follows you, not a timer. Built for speakers who want to sound like themselves.</div>
+      <a href="products.html#promptme" class="pc-link" style="color:var(--amber-light)">Learn more</a>
+    </div>
+    <div class="product-card">
+      <div class="pc-tag">Coming soon</div>
+      <div class="pc-name">Emergent MindMap</div>
+      <div class="pc-desc">Put your thoughts in. Let the connections surface. A mind-map that does the linking so you can focus on the thinking.</div>
+      <div class="pc-soon">In development</div>
+    </div>
+    <div class="product-card">
+      <div class="pc-tag">Coming soon</div>
+      <div class="pc-name">Habit Engine</div>
+      <div class="pc-desc">A habit-building and tracking system with games built on top. Steady, not flashy. Built to keep you moving in the right direction.</div>
+      <div class="pc-soon">In development</div>
+    </div>
+    <div class="product-card" style="border-color:rgba(26,107,107,0.25)">
+      <div class="pc-tag" style="color:var(--teal-light)">Coming soon · B2B</div>
+      <div class="pc-name">Clareo</div>
+      <div class="pc-desc">AI-assisted billing co-pilot for behavioral health practices. Clinical notes in, correct codes out — with a human approving every step.</div>
+      <a href="products.html#clareo" class="pc-link" style="color:var(--teal-light)">Learn more</a>
+    </div>
+  </div>
+</section>
+
+<section class="about-strip">
+  <div>
+    <h2>Built in Eastland, Texas.<br>Four generations <em>deep.</em></h2>
+    <p>Digital Prairie Enterprises isn't a brand strategy — it's a place, a set of values, and a long view. We build software the way good things get built: carefully, honestly, with the people who use it in mind.</p>
+    <p>Allen Goodner is a solutions architect with 15+ years building distributed systems at scale. He's also available for Fractional Architect/CTO engagements for teams that need experienced technical leadership.</p>
+    <a href="about.html" class="about-link">Our story →</a>
+    &nbsp;&nbsp;&nbsp;
+    <a href="contact.html" class="about-link">Work with us →</a>
+  </div>
+  <div>
+    <div class="about-stat">
+      <div>
+        <div class="stat-num">15+</div>
+        <div class="stat-label">Years building production systems</div>
       </div>
-      <div class="product-item">
-        <strong>Emergent MindMap</strong>
-        <br>
-        Connect your thoughts in ways you hadn’t considered.<br>
-        Explore and arrange ideas visually—a field wide open for discovery.
+      <div>
+        <div class="stat-num">4</div>
+        <div class="stat-label">Core values. No exceptions.</div>
       </div>
-      <div class="product-item">
-        <strong>Habit Games</strong>
-        <br>
-        Gamified habit building, without the grind.<br>
-        Simple, steady tools to help you grow and stick with what matters most.
+      <div>
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Ideas on the roadmap</div>
+      </div>
+      <div>
+        <div class="stat-num">1</div>
+        <div class="stat-label">Flagship product, shipping now</div>
       </div>
     </div>
-    <a class="cta-btn" href="contact.html">Get Started</a>
-  </section>
+  </div>
+</section>
 
-  <footer>
-    &copy; 2026 Digital Prairie Enterprises &mdash; Contact: <a style="color: var(--neon-accent);" href="mailto:allen@digitalprairieenterprises.com">allen@digitalprairieenterprises.com</a>
-  </footer>
+<footer>
+  <div class="footer-logo">Digital Prairie <span>Enterprises</span></div>
+  <div class="footer-right">© 2026 Digital Prairie Enterprises · Eastland, Texas · <a href="mailto:allen@digitalprairieenterprises.com">allen@digitalprairieenterprises.com</a></div>
+</footer>
+
 </body>
 </html>

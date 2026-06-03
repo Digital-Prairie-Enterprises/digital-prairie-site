@@ -1,74 +1,449 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Our Products | Digital Prairie Enterprises</title>
-  <link rel="stylesheet" href="styles.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products · Digital Prairie Enterprises</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --night:#0e1624;--navy:#1a2b45;--amber:#c8832a;--amber-light:#e8a84a;
+  --teal:#1a6b6b;--teal-light:#2a9494;--cream:#f5f0e8;--warm-white:#faf8f4;
+  --dust:#b8a898;--text:#1a1410;
+  --serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',sans-serif;
+}
+body{background:var(--warm-white);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;border-bottom:1px solid rgba(26,20,16,0.1);background:var(--warm-white);position:sticky;top:0;z-index:100}
+.nav-logo{font-family:var(--serif);font-size:1.1rem;color:var(--night);text-decoration:none}
+.nav-logo span{color:var(--amber)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{text-decoration:none;color:var(--text);font-size:0.85rem;font-weight:400;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;transition:opacity 0.2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:var(--amber)}
+.nav-cta{background:var(--night);color:var(--cream);padding:0.5rem 1.25rem;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;font-weight:500;transition:background 0.2s}
+.nav-cta:hover{background:var(--amber)}
+
+/* PAGE HEADER */
+.page-header{padding:5rem 3rem 4rem;background:var(--night);position:relative;overflow:hidden}
+.page-header::before{content:'';position:absolute;right:-120px;top:-120px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(200,131,42,0.1) 0%,transparent 70%)}
+.page-header::after{content:'';position:absolute;left:-60px;bottom:-60px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(26,107,107,0.12) 0%,transparent 70%)}
+.eyebrow{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.75rem}
+.eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--amber)}
+.page-header h1{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.8rem);color:var(--cream);line-height:1.12;max-width:700px}
+.page-header h1 em{color:var(--amber-light);font-style:italic}
+.page-header p{color:rgba(245,240,232,0.55);font-size:1rem;font-weight:300;margin-top:1.25rem;max-width:540px;line-height:1.75}
+
+/* FENCE DIVIDER */
+.fence-line{display:flex;align-items:center;gap:1.5rem;padding:0 3rem}
+.fence-line::before,.fence-line::after{content:'';flex:1;height:1px;background:rgba(26,20,16,0.1)}
+.fence-mark{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--dust);white-space:nowrap;padding:1.25rem 0}
+
+/* ── PROMPTME HERO ── */
+#promptme{padding:6rem 3rem;background:var(--warm-white)}
+.promptme-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.pm-eyebrow{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.75rem}
+.pm-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--amber)}
+.pm-live{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(76,175,130,0.08);border:1px solid rgba(76,175,130,0.25);padding:0.3rem 0.8rem;margin-bottom:1.25rem}
+.pm-live-dot{width:6px;height:6px;border-radius:50%;background:#4caf82;animation:pulse 2s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.pm-live-text{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:#4caf82;font-weight:500}
+.pm-title{font-family:var(--serif);font-size:clamp(2.6rem,4vw,3.6rem);color:var(--night);line-height:1.1;margin-bottom:0.75rem;font-weight:700}
+.pm-title em{color:var(--amber);font-style:italic}
+.pm-tagline{font-size:1.05rem;color:#4a3f35;line-height:1.75;font-weight:300;margin-bottom:2rem;max-width:460px}
+.pm-features{display:flex;flex-direction:column;gap:1rem;margin-bottom:2.5rem}
+.pm-feature{display:flex;gap:1rem;align-items:flex-start;padding:1rem 1.25rem;border:1px solid rgba(26,20,16,0.08);background:var(--cream)}
+.pm-feature-icon{font-size:1.2rem;flex-shrink:0;margin-top:2px}
+.pm-feature-body{}
+.pm-feature-title{font-size:0.88rem;font-weight:500;color:var(--night);margin-bottom:0.2rem}
+.pm-feature-desc{font-size:0.82rem;color:#6a5a4a;font-weight:300;line-height:1.55}
+.pm-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{background:var(--night);color:var(--cream);padding:0.85rem 2rem;text-decoration:none;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:500;transition:background 0.2s;display:inline-block}
+.btn-primary:hover{background:var(--amber)}
+.btn-ghost{color:var(--night);padding:0.85rem 2rem;text-decoration:none;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:500;border:1px solid rgba(26,20,16,0.2);transition:border-color 0.2s,color 0.2s;display:inline-block}
+.btn-ghost:hover{border-color:var(--amber);color:var(--amber)}
+
+/* PROMPTME MOCKUP */
+.pm-mockup{background:var(--night);padding:2.5rem;position:relative;overflow:hidden}
+.pm-mockup::before{content:'';position:absolute;top:-60px;right:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(200,131,42,0.1) 0%,transparent 70%)}
+.mockup-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem}
+.mockup-label{font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(245,240,232,0.35);font-weight:500}
+.mockup-status{display:flex;align-items:center;gap:0.5rem}
+.mockup-mic{width:8px;height:8px;border-radius:50%;background:var(--teal-light);animation:pulse 1.5s infinite}
+.mockup-status-text{font-size:0.7rem;color:var(--teal-light);letter-spacing:0.08em}
+.mockup-text-block{background:rgba(245,240,232,0.04);border:1px solid rgba(245,240,232,0.08);padding:1.5rem;margin-bottom:1.25rem}
+.mockup-line{height:10px;background:rgba(245,240,232,0.12);margin-bottom:10px;border-radius:2px}
+.mockup-line.active{background:var(--cream);height:14px}
+.mockup-line.dim{background:rgba(245,240,232,0.05)}
+.mockup-line.w90{width:90%}
+.mockup-line.w75{width:75%}
+.mockup-line.w82{width:82%}
+.mockup-line.w60{width:60%}
+.mockup-line.w95{width:95%}
+.mockup-line.w70{width:70%}
+.mockup-cursor{display:inline-block;width:2px;height:16px;background:var(--amber-light);animation:blink 1s infinite;vertical-align:middle;margin-left:3px}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.mockup-progress{display:flex;align-items:center;gap:1rem;margin-top:1.5rem}
+.progress-bar{flex:1;height:3px;background:rgba(245,240,232,0.1);position:relative;overflow:hidden}
+.progress-fill{position:absolute;left:0;top:0;height:100%;width:42%;background:var(--amber)}
+.progress-label{font-size:0.72rem;color:rgba(245,240,232,0.35);letter-spacing:0.05em}
+.mockup-caption{font-size:0.75rem;color:rgba(245,240,232,0.3);text-align:center;margin-top:1.5rem;line-height:1.5;font-style:italic}
+
+/* USE CASES */
+.use-cases{padding:5rem 3rem;background:var(--cream)}
+.section-eyebrow{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:0.75rem}
+.section-title{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.4rem);color:var(--night);line-height:1.2;margin-bottom:3rem}
+.use-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.use-card{padding:1.75rem;background:var(--warm-white);border:1px solid rgba(26,20,16,0.08)}
+.use-icon{font-size:1.5rem;margin-bottom:1rem}
+.use-title{font-family:var(--serif);font-size:1rem;color:var(--night);margin-bottom:0.5rem;font-weight:700}
+.use-desc{font-size:0.85rem;color:#5a4a3a;line-height:1.65;font-weight:300}
+
+/* ── COMING SOON ── */
+.coming-soon{padding:5rem 3rem;background:var(--warm-white)}
+.roadmap-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem}
+.roadmap-card{border:1px solid rgba(26,20,16,0.1);padding:2.25rem;position:relative;overflow:hidden;transition:border-color 0.2s}
+.roadmap-card:hover{border-color:rgba(200,131,42,0.4)}
+.roadmap-card::after{content:'';position:absolute;bottom:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(200,131,42,0.05) 0%,transparent 70%)}
+.rc-tag{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--dust);font-weight:500;margin-bottom:0.75rem}
+.rc-name{font-family:var(--serif);font-size:1.5rem;color:var(--night);margin-bottom:0.75rem;font-weight:700}
+.rc-desc{font-size:0.9rem;color:#5a4a3a;line-height:1.75;font-weight:300;margin-bottom:1.5rem}
+.rc-detail{font-size:0.82rem;color:#8a7a6a;line-height:1.6;font-weight:300;padding-top:1.25rem;border-top:1px solid rgba(26,20,16,0.08)}
+
+/* CLAREO */
+.clareo{padding:6rem 3rem;background:var(--night);position:relative;overflow:hidden}
+.clareo::before{content:'';position:absolute;right:-120px;top:-120px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(42,148,148,0.1) 0%,transparent 70%);pointer-events:none}
+.clareo::after{content:'';position:absolute;left:-60px;bottom:-80px;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(200,131,42,0.07) 0%,transparent 70%);pointer-events:none}
+.clareo-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;position:relative;z-index:1}
+.clareo-tag{font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal-light);font-weight:500;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.75rem}
+.clareo-tag::before{content:'';display:block;width:28px;height:1px;background:var(--teal-light)}
+.clareo h2{font-family:var(--serif);font-size:clamp(2.4rem,4vw,3.4rem);color:var(--cream);line-height:1.12;margin-bottom:0.5rem;font-weight:700}
+.clareo h2 em{font-style:italic;color:var(--amber-light)}
+.clareo-sub{font-size:1.05rem;color:rgba(245,240,232,0.55);font-weight:300;line-height:1.7;margin-bottom:2rem;font-style:italic}
+.clareo p{font-size:0.95rem;color:rgba(245,240,232,0.6);line-height:1.85;font-weight:300;margin-bottom:1rem}
+.clareo-features{display:flex;flex-direction:column;gap:0.75rem;margin:2rem 0}
+.clareo-feature{display:flex;align-items:flex-start;gap:1rem;padding:1rem 1.25rem;background:rgba(245,240,232,0.04);border:1px solid rgba(245,240,232,0.07)}
+.cf-icon{font-size:1rem;flex-shrink:0;margin-top:1px}
+.cf-body{}
+.cf-title{font-size:0.88rem;font-weight:500;color:var(--cream);margin-bottom:0.2rem}
+.cf-desc{font-size:0.82rem;color:rgba(245,240,232,0.5);font-weight:300;line-height:1.55}
+.clareo-right{padding-top:0.5rem}
+.clareo-callout{background:rgba(42,148,148,0.08);border:1px solid rgba(42,148,148,0.2);padding:2rem}
+.clareo-callout-tag{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal-light);font-weight:500;margin-bottom:1rem}
+.clareo-callout h3{font-family:var(--serif);font-size:1.3rem;color:var(--cream);margin-bottom:0.75rem;font-weight:700;line-height:1.3}
+.clareo-callout p{font-size:0.875rem;color:rgba(245,240,232,0.6);line-height:1.75;font-weight:300;margin-bottom:1.5rem}
+.clareo-roles{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.75rem}
+.clareo-role{font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.3rem 0.75rem;border:1px solid rgba(42,148,148,0.3);color:var(--teal-light);font-weight:500}
+.clareo-cta{display:flex;flex-direction:column;gap:0.75rem}
+.btn-teal{background:var(--teal);color:var(--cream);padding:0.9rem 1.75rem;text-decoration:none;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:500;transition:background 0.2s;display:inline-block;border:none;cursor:pointer;font-family:var(--sans)}
+.btn-teal:hover{background:var(--teal-light)}
+.clareo-form{margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(245,240,232,0.08)}
+.clareo-form-row{display:flex;gap:0;margin-top:0.75rem}
+.clareo-input{flex:1;padding:0.8rem 1rem;background:rgba(245,240,232,0.06);border:1px solid rgba(245,240,232,0.12);color:var(--cream);font-family:var(--sans);font-size:0.85rem;outline:none;transition:border-color 0.2s}
+.clareo-input:focus{border-color:var(--teal-light)}
+.clareo-input::placeholder{color:rgba(245,240,232,0.25)}
+.clareo-submit{background:var(--teal);color:var(--cream);padding:0.8rem 1.25rem;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:500;border:none;cursor:pointer;font-family:var(--sans);transition:background 0.2s;white-space:nowrap}
+.clareo-submit:hover{background:var(--teal-light)}
+.clareo-note{font-size:0.75rem;color:rgba(245,240,232,0.25);margin-top:0.6rem;line-height:1.5}
+.trust-row{display:flex;gap:1.5rem;margin-top:2rem;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:0.5rem}
+.trust-dot{width:5px;height:5px;border-radius:50%;background:var(--teal-light);flex-shrink:0}
+.trust-text{font-size:0.78rem;color:rgba(245,240,232,0.35);letter-spacing:0.04em}
+
+/* NOTIFY STRIP */
+.notify-strip{padding:4rem 3rem;background:var(--night);display:flex;align-items:center;justify-content:space-between;gap:3rem;border-top:1px solid rgba(245,240,232,0.06)}
+.notify-text h3{font-family:var(--serif);font-size:1.6rem;color:var(--cream);margin-bottom:0.4rem}
+.notify-text p{color:rgba(245,240,232,0.5);font-size:0.9rem;font-weight:300}
+.notify-form{display:flex;gap:0;flex-shrink:0}
+.notify-input{padding:0.85rem 1.25rem;background:rgba(245,240,232,0.06);border:1px solid rgba(245,240,232,0.15);color:var(--cream);font-family:var(--sans);font-size:0.85rem;width:260px;outline:none}
+.notify-input::placeholder{color:rgba(245,240,232,0.3)}
+.notify-input:focus{border-color:var(--amber)}
+.notify-btn{background:var(--amber);color:var(--night);padding:0.85rem 1.5rem;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:500;border:none;cursor:pointer;font-family:var(--sans);transition:background 0.2s}
+.notify-btn:hover{background:var(--amber-light)}
+
+/* FOOTER */
+footer{padding:2.5rem 3rem;border-top:1px solid rgba(26,20,16,0.1);display:flex;justify-content:space-between;align-items:center;background:var(--warm-white)}
+.footer-logo{font-family:var(--serif);font-size:0.95rem;color:var(--night)}
+.footer-logo span{color:var(--amber)}
+.footer-right{font-size:0.8rem;color:var(--dust)}
+.footer-right a{color:var(--amber);text-decoration:none}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.page-header{animation:fadeUp 0.6s ease both}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:flex;flex-wrap:wrap;gap:1rem}
+  .page-header{padding:3.5rem 1.5rem 3rem}
+  #promptme{padding:3.5rem 1.5rem}
+  .promptme-grid{grid-template-columns:1fr;gap:3rem}
+  .use-cases,.coming-soon{padding:3.5rem 1.5rem}
+  .use-grid{grid-template-columns:1fr 1fr}
+  .roadmap-grid{grid-template-columns:1fr}
+  .clareo{padding:3.5rem 1.5rem}
+  .clareo-inner{grid-template-columns:1fr;gap:2.5rem}
+  .notify-strip{flex-direction:column;align-items:flex-start;padding:3rem 1.5rem}
+  .notify-input{width:200px}
+  footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem 1.5rem}
+  .fence-line{padding:0 1.5rem}
+}
+</style>
 </head>
 <body>
-  <header>
-    <h1>Digital Prairie Enterprises</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="about.html">About</a>
-    </nav>
-  </header>
 
-  <section class="hero">
-    <div class="hero-logo">
-      <img src="assets/logo.jpeg" alt="Digital Prairie Enterprises Logo">
-    </div>
-    <div class="hero-content">
-      <h2 class="hero-title">Craftsmanship that Lasts</h2>
-      <p class="hero-subtitle">A family of honest tools—thoughtfully built to help you think clearer, map your ideas, and build habits that grow stronger over time.</p>
-      <a href="#products" class="cta-btn">See Our Products</a>
-    </div>
-  </section>
+<nav>
+  <a href="index.html" class="nav-logo">Digital Prairie <span>Enterprises</span></a>
+  <ul class="nav-links">
+    <li><a href="products.html" class="active">Products</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Contact</a>
+</nav>
 
-  <main>
-    <section id="products" class="products">
-      <h2>Our Products</h2>
-      <div class="product-list">
-        <!-- Mindweave -->
-        <div class="product-item">
-          <h3>Mindweave <span style="font-size:0.7em;color:var(--cowboy-dark);">(working title)</span></h3>
-          <p>
-            A quiet place to catch your thoughts before they blow away.<br>
-            Mindweave helps you gather ideas, sort through them, and see what they’re trying to tell you.<br>
-            No noise. No clutter. Just a clean space built for honest thinking.
-          </p>
+<div class="page-header">
+  <div class="eyebrow">The Homestead</div>
+  <h1>Honest tools for<br><em>honest thinking</em></h1>
+  <p>A growing family of apps built around a single conviction: software should feel like it's on your side. Each tool stands on its own — and they're all cut from the same cloth.</p>
+</div>
+
+<div class="fence-line"><div class="fence-mark">Flagship Product</div></div>
+
+<!-- PROMPTME -->
+<section id="promptme">
+  <div class="promptme-grid">
+    <div>
+      <div class="pm-eyebrow">Now available</div>
+      <div class="pm-live"><div class="pm-live-dot"></div><div class="pm-live-text">Live &amp; shipping</div></div>
+      <h2 class="pm-title">Prompt<em>Me</em></h2>
+      <p class="pm-tagline">A teleprompter that listens. Speak at your own pace — PromptMe follows you, not a timer. No foot pedals. No clickers. Just your words, flowing the way you deliver them.</p>
+
+      <div class="pm-features">
+        <div class="pm-feature">
+          <div class="pm-feature-icon">🎙️</div>
+          <div class="pm-feature-body">
+            <div class="pm-feature-title">Voice-driven scrolling</div>
+            <div class="pm-feature-desc">Listens to your speech in real time and advances the script as you speak — naturally, without any hardware.</div>
+          </div>
         </div>
-        <!-- Emergent MindMap -->
-        <div class="product-item">
-          <h3>Emergent MindMap <span style="font-size:0.7em;color:var(--cowboy-dark);">(working title)</span></h3>
-          <p>
-            A wide-open field for exploring ideas.<br>
-            You can lay out thoughts, shift them around, and watch new connections rise up.<br>
-            It’s built for folks who like to see the shape of their thinking, not just read it.
-          </p>
+        <div class="pm-feature">
+          <div class="pm-feature-icon">🎯</div>
+          <div class="pm-feature-body">
+            <div class="pm-feature-title">Built for real speakers</div>
+            <div class="pm-feature-desc">Pastors, presenters, educators, content creators — anyone who needs to speak clearly and sound like themselves.</div>
+          </div>
         </div>
-        <!-- Habit-Building Tools -->
-        <div class="product-item">
-          <h3>Habit-Building Tools <span style="font-size:0.7em;color:var(--cowboy-dark);">(working titles)</span></h3>
-          <p>
-            We’re shaping two small, steady companions that help people build habits that last.<br>
-            Nothing flashy. Nothing loud.<br>
-            Just simple tools that nudge you in the right direction and keep you moving.
-          </p>
+        <div class="pm-feature">
+          <div class="pm-feature-icon">✦</div>
+          <div class="pm-feature-body">
+            <div class="pm-feature-title">Distraction-free interface</div>
+            <div class="pm-feature-desc">Clean, large-text display. No clutter, no confusion. The tool disappears so you can focus on the room.</div>
+          </div>
         </div>
       </div>
-      <div style="margin-top:2em;text-align:center;color:var(--prairie-green);font-weight:bold;">
-        These apps are just the first fenceposts.<br>
-        In time, our digital homestead will grow into tools for learning, creating, training, and steady personal growth.<br>
-        We’re not in a hurry. We’re building it right.
-      </div>
-    </section>
-  </main>
 
-  <footer>
-    &copy; 2026 Digital Prairie Enterprises. Built with prairie roots in Eastland, Texas.
-  </footer>
+      <div class="pm-actions">
+        <a href="#" class="btn-primary">Get PromptMe</a>
+        <a href="contact.html" class="btn-ghost">Request a demo</a>
+      </div>
+    </div>
+
+    <div class="pm-mockup">
+      <div class="mockup-bar">
+        <div class="mockup-label">PromptMe</div>
+        <div class="mockup-status">
+          <div class="mockup-mic"></div>
+          <div class="mockup-status-text">Listening</div>
+        </div>
+      </div>
+      <div class="mockup-text-block">
+        <div class="mockup-line w90 dim"></div>
+        <div class="mockup-line w75 dim"></div>
+        <div class="mockup-line w82 dim" style="margin-bottom:20px"></div>
+        <div class="mockup-line w95 active"></div>
+        <div class="mockup-line w60 active" style="width:55%;margin-bottom:0"><span class="mockup-cursor"></span></div>
+        <div style="margin-top:20px">
+          <div class="mockup-line w82 dim"></div>
+          <div class="mockup-line w70 dim"></div>
+        </div>
+      </div>
+      <div class="mockup-progress">
+        <div class="progress-bar"><div class="progress-fill"></div></div>
+        <div class="progress-label">42%</div>
+      </div>
+      <div class="mockup-caption">Scrolling with your voice, not a timer</div>
+    </div>
+  </div>
+</section>
+
+<div class="fence-line"><div class="fence-mark">Who it's for</div></div>
+
+<section class="use-cases">
+  <div class="section-eyebrow">Use cases</div>
+  <div class="section-title">Wherever you speak, PromptMe follows</div>
+  <div class="use-grid">
+    <div class="use-card">
+      <div class="use-icon">✝</div>
+      <div class="use-title">Pastors &amp; preachers</div>
+      <div class="use-desc">Deliver sermons naturally. Keep your message in front of you without losing eye contact with your congregation.</div>
+    </div>
+    <div class="use-card">
+      <div class="use-icon">📹</div>
+      <div class="use-title">Content creators</div>
+      <div class="use-desc">Record videos without memorizing scripts. Stay on point, sound natural, and stop relying on multiple takes.</div>
+    </div>
+    <div class="use-card">
+      <div class="use-icon">🏛</div>
+      <div class="use-title">Conference speakers</div>
+      <div class="use-desc">Nail the timing on prepared remarks without staring at notes. Your script keeps pace with how you actually deliver it.</div>
+    </div>
+    <div class="use-card">
+      <div class="use-icon">🎓</div>
+      <div class="use-title">Educators &amp; trainers</div>
+      <div class="use-desc">Lead lessons and workshops with structured content that follows your natural teaching rhythm.</div>
+    </div>
+    <div class="use-card">
+      <div class="use-icon">💼</div>
+      <div class="use-title">Business presenters</div>
+      <div class="use-desc">Pitch, demo, and present with confidence. Prepared but never robotic.</div>
+    </div>
+    <div class="use-card">
+      <div class="use-icon">🎙</div>
+      <div class="use-title">Podcasters &amp; broadcasters</div>
+      <div class="use-desc">Keep an interview or show outline in view as you host — hands-free, eyes-up.</div>
+    </div>
+  </div>
+</section>
+
+<div class="fence-line"><div class="fence-mark">Behavioral Health · B2B · AI-assisted</div></div>
+
+<!-- CLAREO -->
+<section class="clareo">
+  <div class="clareo-inner">
+    <div>
+      <div class="clareo-tag">Coming soon · B2B</div>
+      <h2>Clareo</h2>
+      <p class="clareo-sub">Smarter billing for behavioral health.</p>
+      <p>Behavioral health billing is its own world — complex codes, documentation requirements, and the constant pressure to get it right or wait months for reimbursement. Clareo is built specifically for this world.</p>
+      <p>It reads your clinical notes, proposes the right ICD-10 and billing codes, and explains every decision in plain English — so your biller reviews and approves in moments, not minutes.</p>
+      <div class="clareo-features">
+        <div class="clareo-feature">
+          <div class="cf-icon">📄</div>
+          <div class="cf-body">
+            <div class="cf-title">Works with your existing documents</div>
+            <div class="cf-desc">Upload notes as a PDF, Word doc, or Google Doc — or connect directly through your EHR. No new software for your providers.</div>
+          </div>
+        </div>
+        <div class="clareo-feature">
+          <div class="cf-icon">⬡</div>
+          <div class="cf-body">
+            <div class="cf-title">AI proposes, humans approve</div>
+            <div class="cf-desc">Every proposed code is reviewed and approved by a human before anything is submitted. Clareo handles the heavy lifting; your team stays in control.</div>
+          </div>
+        </div>
+        <div class="clareo-feature">
+          <div class="cf-icon">💬</div>
+          <div class="cf-body">
+            <div class="cf-title">Plain-English explanations</div>
+            <div class="cf-desc">Every code suggestion comes with a clear reason. No black-box decisions — your biller knows exactly what to look at and why.</div>
+          </div>
+        </div>
+      </div>
+      <div class="trust-row">
+        <div class="trust-item"><div class="trust-dot"></div><div class="trust-text">No changes to provider documentation</div></div>
+        <div class="trust-item"><div class="trust-dot"></div><div class="trust-text">Human review before every submission</div></div>
+        <div class="trust-item"><div class="trust-dot"></div><div class="trust-text">Built with practitioners, not just for them</div></div>
+      </div>
+    </div>
+
+    <div class="clareo-right">
+      <div class="clareo-callout">
+        <div class="clareo-callout-tag">Shape the product · Early access</div>
+        <h3>We're building Clareo with the people who will use it.</h3>
+        <p>If you work in behavioral health billing — as a practice manager, billing coordinator, or RCM firm — we'd like to hear from you. We're currently talking with practitioners to shape Clareo before launch.</p>
+        <p>Participants get early access and founding-member pricing when Clareo is ready.</p>
+        <div class="clareo-roles">
+          <div class="clareo-role">Practice Manager</div>
+          <div class="clareo-role">Billing Coordinator</div>
+          <div class="clareo-role">RCM Firm</div>
+          <div class="clareo-role">Behavioral Health Provider</div>
+        </div>
+        <div class="clareo-form">
+          <div style="font-size:0.78rem;color:rgba(245,240,232,0.4);margin-bottom:0.5rem;letter-spacing:0.05em;text-transform:uppercase;font-size:0.68rem;">Share your experience — help shape Clareo</div>
+          <div class="clareo-form-row">
+            <input class="clareo-input" type="email" placeholder="your@practice.com" id="clareo-email">
+            <button class="clareo-submit" onclick="handleClareo()">Get early access →</button>
+          </div>
+          <div class="clareo-note">No spam. You'll hear from Allen directly to schedule a short conversation.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="fence-line"><div class="fence-mark">On the horizon</div></div>
+
+<!-- COMING SOON -->
+<section class="coming-soon">
+  <div class="section-eyebrow">What's coming</div>
+  <div class="section-title">The rest of the homestead</div>
+  <div class="roadmap-grid">
+    <div class="roadmap-card">
+      <div class="rc-tag">In development</div>
+      <div class="rc-name">Emergent MindMap</div>
+      <div class="rc-desc">Put your thoughts in. Let the connections surface on their own. A mind-mapping tool that figures out how your ideas link together — you bring the thinking, it handles the structure.</div>
+      <div class="rc-detail">Unlike traditional mind maps where you manually draw the connections, Emergent MindMap analyzes the relationships between your entries and surfaces links you hadn't considered. A wide-open field for exploration.</div>
+    </div>
+    <div class="roadmap-card">
+      <div class="rc-tag">In development</div>
+      <div class="rc-name">Habit Engine</div>
+      <div class="rc-desc">A habit-building and tracking system built the way habits actually form — steadily, with reinforcement. Games built on top of the same engine make the process sustainable, not a chore.</div>
+      <div class="rc-detail">The engine powers both a standalone habit tracker and a set of games layered on top of it. Progress in the games reflects real habit-building activity. Small wins, long-term momentum.</div>
+    </div>
+  </div>
+</section>
+
+<!-- NOTIFY STRIP -->
+<div class="notify-strip">
+  <div class="notify-text">
+    <h3>Stay on the trail</h3>
+    <p>Get word when new tools leave the shop. No noise, no clutter — just updates that matter.</p>
+  </div>
+  <div class="notify-form">
+    <input class="notify-input" type="email" placeholder="your@email.com">
+    <button class="notify-btn">Notify me</button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Digital Prairie <span>Enterprises</span></div>
+  <div class="footer-right">© 2026 Digital Prairie Enterprises · Eastland, Texas · <a href="mailto:allen@digitalprairieenterprises.com">allen@digitalprairieenterprises.com</a></div>
+</footer>
+
+<script>
+function handleClareo() {
+  const input = document.getElementById('clareo-email');
+  const btn = input.nextElementSibling;
+  if (!input.value || !input.value.includes('@')) {
+    input.style.borderColor = 'rgba(200,131,42,0.6)';
+    input.focus();
+    return;
+  }
+  btn.textContent = 'You\'re on the list ✓';
+  btn.style.background = '#4caf82';
+  btn.style.cursor = 'default';
+  input.value = '';
+  input.style.borderColor = '';
+  setTimeout(() => {
+    btn.textContent = 'Get early access →';
+    btn.style.background = '';
+    btn.style.cursor = '';
+  }, 5000);
+}
+document.getElementById('clareo-email').addEventListener('keydown', e => {
+  if (e.key === 'Enter') handleClareo();
+});
+</script>
 </body>
 </html>

@@ -1,39 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>{{ POST_TITLE }} – Digital Prairie Enterprises Blog</title>
-  <link rel="stylesheet" href="../styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POST TITLE · Digital Prairie Enterprises</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --night:#0e1624;--amber:#c8832a;--amber-light:#e8a84a;
+  --cream:#f5f0e8;--warm-white:#faf8f4;--dust:#b8a898;--text:#1a1410;
+  --serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',sans-serif;
+}
+body{background:var(--warm-white);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden}
+nav{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;border-bottom:1px solid rgba(26,20,16,0.1);background:var(--warm-white);position:sticky;top:0;z-index:100}
+.nav-logo{font-family:var(--serif);font-size:1.1rem;color:var(--night);text-decoration:none}
+.nav-logo span{color:var(--amber)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{text-decoration:none;color:var(--text);font-size:0.85rem;font-weight:400;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;transition:opacity 0.2s}
+.nav-links a:hover{opacity:1;color:var(--amber)}
+.nav-cta{background:var(--night);color:var(--cream);padding:0.5rem 1.25rem;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;font-weight:500;transition:background 0.2s}
+.nav-cta:hover{background:var(--amber)}
+
+/* POST HEADER */
+.post-header{padding:5rem 3rem 4rem;background:var(--night);position:relative;overflow:hidden}
+.post-header::before{content:'';position:absolute;right:-100px;top:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(200,131,42,0.09) 0%,transparent 70%)}
+.back-link{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,240,232,0.4);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;position:relative}
+.back-link:hover{color:var(--amber-light)}
+.post-meta{font-size:0.78rem;color:rgba(245,240,232,0.4);margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;position:relative}
+.post-tag{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;background:rgba(200,131,42,0.15);color:var(--amber-light);padding:0.15rem 0.5rem;font-weight:500}
+.post-header h1{font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.6rem);color:var(--cream);line-height:1.12;max-width:800px;position:relative}
+.post-header h1 em{color:var(--amber-light);font-style:italic}
+.post-lede{font-size:1.1rem;color:rgba(245,240,232,0.55);font-weight:300;line-height:1.75;margin-top:1.25rem;max-width:640px;font-style:italic;position:relative}
+
+/* POST BODY */
+.post-body{max-width:720px;margin:0 auto;padding:4rem 3rem}
+/* Prose styles */
+.post-body p{font-size:1rem;color:#2a1f15;line-height:1.85;margin-bottom:1.5rem;font-weight:300}
+.post-body h2{font-family:var(--serif);font-size:1.6rem;color:var(--night);margin:3rem 0 1rem;font-weight:700;line-height:1.25}
+.post-body h3{font-family:var(--serif);font-size:1.2rem;color:var(--night);margin:2rem 0 0.75rem;font-weight:700}
+.post-body ul,.post-body ol{padding-left:1.5rem;margin-bottom:1.5rem}
+.post-body li{font-size:1rem;color:#2a1f15;line-height:1.8;font-weight:300;margin-bottom:0.4rem}
+.post-body blockquote{border-left:3px solid var(--amber);padding:0.75rem 0 0.75rem 1.5rem;margin:2rem 0;font-family:var(--serif);font-size:1.15rem;font-style:italic;color:var(--night);line-height:1.55}
+.post-body code{background:var(--cream);padding:0.15rem 0.4rem;font-size:0.875em;font-family:monospace;color:var(--night)}
+.post-body pre{background:var(--night);padding:1.5rem;overflow-x:auto;margin:2rem 0}
+.post-body pre code{background:none;padding:0;color:rgba(245,240,232,0.85);font-size:0.875rem;line-height:1.7}
+.post-body hr{border:none;border-top:1px solid rgba(26,20,16,0.1);margin:3rem 0}
+.post-body a{color:var(--amber);text-decoration:none;border-bottom:1px solid rgba(200,131,42,0.3);transition:border-color 0.2s}
+.post-body a:hover{border-color:var(--amber)}
+.post-body strong{font-weight:500;color:var(--night)}
+
+/* AUTHOR CARD */
+.author-card{max-width:720px;margin:0 auto;padding:0 3rem 4rem}
+.author-inner{background:var(--cream);border:1px solid rgba(26,20,16,0.1);padding:1.75rem;display:flex;gap:1.5rem;align-items:flex-start}
+.author-avatar{width:56px;height:56px;border-radius:50%;background:var(--night);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.1rem;color:var(--amber-light);flex-shrink:0}
+.author-label{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--dust);font-weight:500;margin-bottom:0.3rem}
+.author-name{font-family:var(--serif);font-size:1rem;color:var(--night);font-weight:700;margin-bottom:0.4rem}
+.author-bio{font-size:0.85rem;color:#5a4a3a;line-height:1.65;font-weight:300}
+.author-links{display:flex;gap:1rem;margin-top:0.75rem}
+.author-links a{font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--amber);text-decoration:none;font-weight:500}
+
+/* BACK NAV */
+.post-nav{max-width:720px;margin:0 auto;padding:0 3rem 4rem;display:flex;justify-content:space-between;border-top:1px solid rgba(26,20,16,0.08);padding-top:2rem}
+.post-nav a{font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--night);text-decoration:none;font-weight:500;opacity:0.6;transition:opacity 0.2s}
+.post-nav a:hover{opacity:1;color:var(--amber)}
+
+footer{padding:2.5rem 3rem;border-top:1px solid rgba(26,20,16,0.1);display:flex;justify-content:space-between;align-items:center;background:var(--warm-white)}
+.footer-logo{font-family:var(--serif);font-size:0.95rem;color:var(--night)}
+.footer-logo span{color:var(--amber)}
+.footer-right{font-size:0.8rem;color:var(--dust)}
+.footer-right a{color:var(--amber);text-decoration:none}
+
+@media(max-width:700px){
+  nav{padding:1rem 1.5rem}.nav-links{display:none}
+  .post-header{padding:3.5rem 1.5rem 3rem}
+  .post-body,.author-card,.post-nav{padding-left:1.5rem;padding-right:1.5rem}
+  footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem 1.5rem}
+}
+</style>
 </head>
 <body>
-  <header>
-    <h1>Digital Prairie Enterprises</h1>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/blog.html">Blog</a>
-      <a href="/about.html">About</a>
-      <a href="/contact.html">Contact</a>
-    </nav>
-  </header>
-  <main class="products" style="margin-top:2em;">
-    <article class="product-item">
-      <h2>{{ POST_TITLE }}</h2>
-      <p class="blog-meta">
-        <time datetime="{{ POST_DATE }}">{{ POST_DATE_PRETTY }}</time>
-        &middot; <span class="blog-author">{{ POST_AUTHOR }}</span>
-      </p>
-      <section class="blog-summary">
-        <p>{{ POST_SUMMARY }}</p>
-      </section>
-      <section class="blog-content">
-        <!-- Blog content goes here -->
-        {{ POST_CONTENT }}
-      </section>
-    </article>
-  </main>
-  <footer>
-    &copy; {{ YEAR }} Digital Prairie Enterprises. All rights reserved.
-  </footer>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Digital Prairie <span>Enterprises</span></a>
+  <ul class="nav-links">
+    <li><a href="../products.html">Products</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <a href="../contact.html" class="nav-cta">Contact</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════════
+     POST HEADER — fill in title, date, tag, lede
+     ═══════════════════════════════════════════════ -->
+<div class="post-header">
+  <a href="../blog.html" class="back-link">← Back to the blog</a>
+  <div class="post-meta">
+    Month Day, Year · Allen Goodner · <span class="post-tag">Tag</span>
+  </div>
+  <h1>Your Post Title Here</h1>
+  <p class="post-lede">
+    One or two sentences that introduce the piece — the hook that tells the reader
+    why this is worth their time.
+  </p>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     POST BODY — write your post below
+     Available elements:
+       <p>           — paragraph
+       <h2>          — section heading
+       <h3>          — sub-heading
+       <blockquote>  — pull quote
+       <ul>/<ol>     — lists
+       <code>        — inline code
+       <pre><code>   — code block
+       <hr>          — section break
+       <strong>      — bold emphasis
+     ═══════════════════════════════════════════════ -->
+<div class="post-body">
+
+  <p>
+    Opening paragraph here. This is where you set the scene or make your first
+    point. Write naturally — the styling will take care of itself.
+  </p>
+
+  <h2>A Section Heading</h2>
+
+  <p>
+    Body copy continues here. Add as many paragraphs, headings, and other
+    elements as you need.
+  </p>
+
+  <blockquote>
+    A pull quote or key takeaway goes here. Good for a sentence that deserves
+    to stand on its own.
+  </blockquote>
+
+  <p>
+    Keep going…
+  </p>
+
+  <hr>
+
+  <p>
+    Closing thoughts.
+  </p>
+
+</div>
+
+<!-- AUTHOR CARD — update bio if needed, otherwise leave as-is -->
+<div class="author-card">
+  <div class="author-inner">
+    <div class="author-avatar">AG</div>
+    <div>
+      <div class="author-label">Written by</div>
+      <div class="author-name">Allen Goodner</div>
+      <div class="author-bio">Founder of Digital Prairie Enterprises. Solutions architect with 15+ years building distributed systems. Based in Eastland, Texas.</div>
+      <div class="author-links">
+        <a href="https://www.linkedin.com/in/allengoodner" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://allendgoodner.net" target="_blank" rel="noopener">Blog</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="post-nav">
+  <a href="../blog.html">← All posts</a>
+  <!-- Optionally link to prev/next post:
+  <a href="next-post.html">Next post →</a>
+  -->
+</div>
+
+<footer>
+  <div class="footer-logo">Digital Prairie <span>Enterprises</span></div>
+  <div class="footer-right">© 2026 Digital Prairie Enterprises · Eastland, Texas · <a href="mailto:allen@digitalprairieenterprises.com">allen@digitalprairieenterprises.com</a></div>
+</footer>
+
 </body>
 </html>
