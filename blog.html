@@ -1,46 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Blog – Digital Prairie Enterprises</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog · Digital Prairie Enterprises</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --night:#0e1624;--amber:#c8832a;--amber-light:#e8a84a;
+  --cream:#f5f0e8;--warm-white:#faf8f4;--dust:#b8a898;--text:#1a1410;
+  --serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',sans-serif;
+}
+body{background:var(--warm-white);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;border-bottom:1px solid rgba(26,20,16,0.1);background:var(--warm-white);position:sticky;top:0;z-index:100}
+.nav-logo{font-family:var(--serif);font-size:1.1rem;color:var(--night);text-decoration:none}
+.nav-logo span{color:var(--amber)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{text-decoration:none;color:var(--text);font-size:0.85rem;font-weight:400;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;transition:opacity 0.2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:var(--amber)}
+.nav-cta{background:var(--night);color:var(--cream);padding:0.5rem 1.25rem;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;font-weight:500;transition:background 0.2s}
+.nav-cta:hover{background:var(--amber)}
+
+/* PAGE HEADER */
+.page-header{padding:5rem 3rem 4rem;background:var(--night);position:relative;overflow:hidden}
+.page-header::before{content:'';position:absolute;right:-100px;top:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(200,131,42,0.09) 0%,transparent 70%)}
+.eyebrow{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.75rem}
+.eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--amber)}
+.page-header h1{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.8rem);color:var(--cream);line-height:1.12}
+.page-header h1 em{color:var(--amber-light);font-style:italic}
+.page-header p{color:rgba(245,240,232,0.5);font-size:1rem;font-weight:300;margin-top:1.25rem;max-width:520px;line-height:1.75}
+
+/* FENCE */
+.fence-line{display:flex;align-items:center;gap:1.5rem;padding:0 3rem}
+.fence-line::before,.fence-line::after{content:'';flex:1;height:1px;background:rgba(26,20,16,0.1)}
+.fence-mark{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--dust);white-space:nowrap;padding:1.25rem 0}
+
+/* BLOG LAYOUT */
+.blog-body{display:grid;grid-template-columns:1fr 300px;gap:4rem;padding:4rem 3rem;align-items:start;max-width:1200px;margin:0 auto;width:100%}
+
+/* POST LIST */
+.post-list{display:flex;flex-direction:column;gap:0}
+
+/* ===============================================================
+   POST CARD — copy this block to add a new post
+   ===============================================================
+   <a class="post-card" href="posts/your-post-filename.html">
+     <div class="post-meta">Month Day, Year · Allen Goodner · <span class="post-tag">Tag</span></div>
+     <h2 class="post-title">Your Post Title Here</h2>
+     <p class="post-excerpt">A sentence or two summarizing the post. Keep it to 1–2 lines.</p>
+     <div class="post-read">Read more →</div>
+   </a>
+   =============================================================== */
+.post-card{display:block;text-decoration:none;padding:2rem 0;border-bottom:1px solid rgba(26,20,16,0.08);transition:border-color 0.2s;color:inherit}
+.post-card:first-child{padding-top:0}
+.post-card:hover{border-bottom-color:var(--amber)}
+.post-card:hover .post-title{color:var(--amber)}
+.post-meta{font-size:0.78rem;color:var(--dust);letter-spacing:0.04em;margin-bottom:0.6rem;display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap}
+.post-tag{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;background:rgba(200,131,42,0.1);color:var(--amber);padding:0.15rem 0.5rem;font-weight:500}
+.post-title{font-family:var(--serif);font-size:1.4rem;color:var(--night);line-height:1.25;margin-bottom:0.6rem;font-weight:700;transition:color 0.2s}
+.post-excerpt{font-size:0.9rem;color:#5a4a3a;line-height:1.7;font-weight:300;margin-bottom:0.75rem}
+.post-read{font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber);font-weight:500}
+
+/* EMPTY STATE — remove this block once you have posts */
+.empty-state{padding:3rem 0;text-align:center}
+.empty-icon{font-size:2.5rem;margin-bottom:1rem;opacity:0.3}
+.empty-title{font-family:var(--serif);font-size:1.3rem;color:var(--night);margin-bottom:0.5rem}
+.empty-desc{font-size:0.9rem;color:var(--dust);font-weight:300;line-height:1.7}
+
+/* SIDEBAR */
+.sidebar{display:flex;flex-direction:column;gap:2rem;position:sticky;top:6rem}
+.sidebar-card{border:1px solid rgba(26,20,16,0.1);padding:1.5rem}
+.sidebar-label{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:1rem}
+.sidebar-card p{font-size:0.875rem;color:#5a4a3a;line-height:1.7;font-weight:300;margin-bottom:1rem}
+.sidebar-card a{font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--night);text-decoration:none;font-weight:500;border-bottom:1px solid rgba(26,20,16,0.15);padding-bottom:1px;transition:color 0.2s,border-color 0.2s}
+.sidebar-card a:hover{color:var(--amber);border-color:var(--amber)}
+.sidebar-topics{display:flex;flex-wrap:wrap;gap:0.5rem}
+.topic{font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.3rem 0.7rem;border:1px solid rgba(26,20,16,0.12);color:#6a5a4a;text-decoration:none;transition:border-color 0.2s,color 0.2s}
+.topic:hover{border-color:var(--amber);color:var(--amber)}
+.ext-blog{background:var(--cream);border:none}
+
+/* FOOTER */
+footer{padding:2.5rem 3rem;border-top:1px solid rgba(26,20,16,0.1);display:flex;justify-content:space-between;align-items:center;background:var(--warm-white)}
+.footer-logo{font-family:var(--serif);font-size:0.95rem;color:var(--night)}
+.footer-logo span{color:var(--amber)}
+.footer-right{font-size:0.8rem;color:var(--dust)}
+.footer-right a{color:var(--amber);text-decoration:none}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  .page-header{padding:3.5rem 1.5rem 3rem}
+  .blog-body{grid-template-columns:1fr;gap:2.5rem;padding:2.5rem 1.5rem}
+  .sidebar{position:static}
+  footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem 1.5rem}
+  .fence-line{padding:0 1.5rem}
+}
+</style>
 </head>
 <body>
-  <header>
-    <h1>Digital Prairie Blog</h1>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/about.html">About</a>
-      <a href="/contact.html">Contact</a>
-    </nav>
-  </header>
-  <main class="products">
-    <section>
-      <h2>Latest Posts</h2>
-      <div class="blog-list product-list">
-        <!--
-          Add a new anchor below for each new post, for example:
-          <a class="product-item" href="/posts/my-first-post.html">
-            <h3>My First Post Title</h3>
-            <p class="blog-meta">January 1, 2026 &middot; Allen Goodner</p>
-            <p>Short summary or excerpt of the post goes here.</p>
-          </a>
-          Copy the above structure per post.
-        -->
-        <!-- Example Entry: -->
-        <!--
-        <a class="product-item" href="/posts/example-post.html">
-          <h3>Example Post Title</h3>
-          <p class="blog-meta">Month Day, Year &middot; Author Name</p>
-          <p>This is a summary or opening excerpt for the post.</p>
-        </a>
-        -->
+
+<nav>
+  <a href="index.html" class="nav-logo">Digital Prairie <span>Enterprises</span></a>
+  <ul class="nav-links">
+    <li><a href="products.html">Products</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Contact</a>
+</nav>
+
+<div class="page-header">
+  <div class="eyebrow">The campfire</div>
+  <h1>Dispatches from<br>the <em>Digital Prairie</em></h1>
+  <p>Writing on software craft, building in public, leadership, life in Eastland County, and whatever else seems worth saying.</p>
+</div>
+
+<div class="fence-line"><div class="fence-mark">Latest posts</div></div>
+
+<div class="blog-body">
+
+  <!-- ============================================================
+       POST LIST
+       To add a new post:
+       1. Create the post file at posts/your-post-filename.html
+          (see posts/post-template.html for the starter template)
+       2. Copy one <a class="post-card"> block below and fill it in
+       3. Add the newest post at the TOP of the list
+       ============================================================ -->
+  <div class="post-list">
+
+    <!-- ── ADD NEW POSTS HERE (newest first) ─────────────────────
+
+    <a class="post-card" href="posts/your-post-filename.html">
+      <div class="post-meta">
+        Month Day, Year · Allen Goodner · <span class="post-tag">Tag</span>
       </div>
-    </section>
-  </main>
-  <footer>
-    &copy; 2026 Digital Prairie Enterprises. All rights reserved.
-  </footer>
+      <h2 class="post-title">Your Post Title Here</h2>
+      <p class="post-excerpt">
+        A sentence or two summarizing the post. Keep it short — just enough
+        to tell the reader why it's worth their time.
+      </p>
+      <div class="post-read">Read more →</div>
+    </a>
+
+    ── END POST AREA ─────────────────────────────────────────── -->
+
+    <!-- Empty state — delete this block once you have at least one post -->
+    <div class="empty-state">
+      <div class="empty-icon">✎</div>
+      <div class="empty-title">First post is on the way</div>
+      <div class="empty-desc">Nothing here yet — but the range is wide open.<br>Check back soon, or find Allen's writing at <a href="https://allendgoodner.net" target="_blank" rel="noopener" style="color:var(--amber);text-decoration:none">allendgoodner.net</a></div>
+    </div>
+
+  </div>
+  <!-- end .post-list -->
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-label">About this blog</div>
+      <p>Allen writes about software architecture, building in public, and life on the Digital Prairie. Honest takes, no filler.</p>
+      <a href="about.html">About Allen →</a>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-label">Topics</div>
+      <!-- Add or remove topic tags as your posts develop -->
+      <div class="sidebar-topics">
+        <a href="#" class="topic">Software craft</a>
+        <a href="#" class="topic">Architecture</a>
+        <a href="#" class="topic">Building in public</a>
+        <a href="#" class="topic">Leadership</a>
+        <a href="#" class="topic">AI & tools</a>
+        <a href="#" class="topic">Texas life</a>
+      </div>
+    </div>
+
+    <div class="sidebar-card ext-blog">
+      <div class="sidebar-label">Also writing at</div>
+      <p>More posts and longer-form writing on Allen's personal blog.</p>
+      <a href="https://allendgoodner.net" target="_blank" rel="noopener">allendgoodner.net →</a>
+    </div>
+  </aside>
+
+</div>
+<!-- end .blog-body -->
+
+<footer>
+  <div class="footer-logo">Digital Prairie <span>Enterprises</span></div>
+  <div class="footer-right">© 2026 Digital Prairie Enterprises · Eastland, Texas · <a href="mailto:allen@digitalprairieenterprises.com">allen@digitalprairieenterprises.com</a></div>
+</footer>
+
 </body>
 </html>
