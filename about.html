@@ -1,117 +1,293 @@
-<!--
-Full About page, incorporating "Our Story" and "Our People"
-- Uses logo at /assets/logo.jpeg
-- Allen Goodner's headshot at /assets/headshot.jpg
-- Text adapted from copy-content.md
-- Styles as in styles.css
--->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>About Us | Digital Prairie Enterprises</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About · Digital Prairie Enterprises</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --night:#0e1624;--navy:#1a2b45;--amber:#c8832a;--amber-light:#e8a84a;
+  --teal:#1a6b6b;--teal-light:#2a9494;--cream:#f5f0e8;--warm-white:#faf8f4;
+  --dust:#b8a898;--text:#1a1410;
+  --serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',sans-serif;
+}
+body{background:var(--warm-white);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;border-bottom:1px solid rgba(26,20,16,0.1);background:var(--warm-white);position:sticky;top:0;z-index:100}
+.nav-logo{font-family:var(--serif);font-size:1.1rem;color:var(--night);text-decoration:none}
+.nav-logo span{color:var(--amber)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{text-decoration:none;color:var(--text);font-size:0.85rem;font-weight:400;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;transition:opacity 0.2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:var(--amber)}
+.nav-cta{background:var(--night);color:var(--cream);padding:0.5rem 1.25rem;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;font-weight:500;transition:background 0.2s}
+.nav-cta:hover{background:var(--amber)}
+
+/* HERO — SPLIT */
+.about-hero{display:grid;grid-template-columns:1fr 1fr;min-height:80vh}
+.hero-text{padding:5.5rem 3rem;display:flex;flex-direction:column;justify-content:center;background:var(--warm-white);border-right:1px solid rgba(26,20,16,0.08)}
+.eyebrow{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.75rem}
+.eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--amber)}
+.hero-text h1{font-family:var(--serif);font-size:clamp(2.4rem,4.5vw,3.6rem);color:var(--night);line-height:1.12;margin-bottom:1.5rem;font-weight:700}
+.hero-text h1 em{color:var(--amber);font-style:italic}
+.hero-text p{font-size:1rem;color:#4a3f35;line-height:1.8;font-weight:300;max-width:440px;margin-bottom:1rem}
+.hero-image{background:var(--night);display:flex;align-items:center;justify-content:center;padding:3rem;position:relative;overflow:hidden}
+.hero-image::before{content:'';position:absolute;top:-80px;right:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(200,131,42,0.1) 0%,transparent 70%)}
+.hero-image::after{content:'';position:absolute;bottom:-80px;left:-40px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(26,107,107,0.12) 0%,transparent 70%)}
+.hero-image img{max-width:340px;width:100%;position:relative;z-index:1;filter:drop-shadow(0 12px 48px rgba(200,131,42,0.25))}
+
+/* FENCE DIVIDER */
+.fence-line{display:flex;align-items:center;gap:1.5rem;padding:0 3rem}
+.fence-line::before,.fence-line::after{content:'';flex:1;height:1px;background:rgba(26,20,16,0.1)}
+.fence-mark{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--dust);white-space:nowrap;padding:1.25rem 0}
+
+/* STORY */
+.story{padding:6rem 3rem;background:var(--cream);display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+.story-label{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:1rem}
+.story h2{font-family:var(--serif);font-size:clamp(2rem,3.5vw,2.8rem);color:var(--night);line-height:1.2;margin-bottom:2rem;font-weight:700}
+.story h2 em{font-style:italic;color:var(--amber)}
+.story-body p{font-size:0.95rem;color:#4a3f35;line-height:1.85;font-weight:300;margin-bottom:1.25rem}
+.story-pull{font-family:var(--serif);font-size:1.4rem;color:var(--night);line-height:1.45;font-style:italic;padding:1.75rem 0 1.75rem 1.5rem;border-left:3px solid var(--amber);margin:2rem 0}
+
+/* ALLEN — FOUNDER */
+.founder{padding:6rem 3rem;background:var(--night);display:grid;grid-template-columns:auto 1fr;gap:4rem;align-items:start;max-width:100%}
+.founder-headshot{width:200px;flex-shrink:0}
+.founder-headshot img{width:100%;display:block;filter:grayscale(20%)}
+.founder-headshot-placeholder{width:200px;height:240px;background:rgba(245,240,232,0.06);border:1px solid rgba(245,240,232,0.1);display:flex;align-items:center;justify-content:center}
+.founder-placeholder-text{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,240,232,0.2);text-align:center;line-height:1.8;padding:1rem}
+.founder-tag{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:0.75rem}
+.founder h2{font-family:var(--serif);font-size:clamp(2rem,3vw,2.6rem);color:var(--cream);line-height:1.15;margin-bottom:0.35rem;font-weight:700}
+.founder-title{font-size:0.88rem;color:rgba(245,240,232,0.4);letter-spacing:0.05em;margin-bottom:2rem}
+.founder p{font-size:0.95rem;color:rgba(245,240,232,0.6);line-height:1.85;font-weight:300;margin-bottom:1.1rem;max-width:640px}
+.founder-credentials{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;padding-top:2.5rem;border-top:1px solid rgba(245,240,232,0.08)}
+.cred-num{font-family:var(--serif);font-size:2rem;color:var(--amber-light);font-weight:700;line-height:1}
+.cred-label{font-size:0.78rem;color:rgba(245,240,232,0.35);letter-spacing:0.05em;margin-top:0.35rem}
+.fractional-badge{display:inline-flex;align-items:center;gap:0.6rem;background:rgba(200,131,42,0.1);border:1px solid rgba(200,131,42,0.25);padding:0.5rem 1rem;margin-top:2rem}
+.fractional-badge-text{font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--amber-light);font-weight:500}
+.fractional-badge-dot{width:5px;height:5px;border-radius:50%;background:var(--amber-light);flex-shrink:0}
+.founder-cta{display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap}
+.btn-amber{background:var(--amber);color:var(--night);padding:0.85rem 2rem;text-decoration:none;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:500;transition:background 0.2s;display:inline-block}
+.btn-amber:hover{background:var(--amber-light)}
+.btn-ghost-light{color:var(--cream);padding:0.85rem 2rem;text-decoration:none;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:500;border:1px solid rgba(245,240,232,0.2);transition:border-color 0.2s;display:inline-block}
+.btn-ghost-light:hover{border-color:var(--amber-light);color:var(--amber-light)}
+
+/* VALUES */
+.values{padding:5rem 3rem;background:var(--warm-white)}
+.section-eyebrow{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:0.75rem}
+.section-title{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.4rem);color:var(--night);line-height:1.2;margin-bottom:3.5rem}
+.values-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgba(26,20,16,0.12)}
+.value-card{padding:2.25rem 1.75rem;border-right:1px solid rgba(26,20,16,0.12)}
+.value-card:last-child{border-right:none}
+.value-letter{font-family:var(--serif);font-size:3.5rem;color:var(--amber);opacity:0.2;line-height:1;margin-bottom:0.5rem;font-weight:700}
+.value-name{font-family:var(--serif);font-size:1.15rem;color:var(--night);margin-bottom:0.6rem;font-weight:700}
+.value-desc{font-size:0.875rem;color:#5a4a3a;line-height:1.7;font-weight:300}
+
+/* BROADER FRONTIER */
+.frontier{padding:5rem 3rem;background:var(--cream)}
+.frontier-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.frontier h2{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.4rem);color:var(--night);line-height:1.2;margin-bottom:1.5rem}
+.frontier h2 em{font-style:italic;color:var(--amber)}
+.frontier p{font-size:0.95rem;color:#4a3f35;line-height:1.85;font-weight:300;margin-bottom:1rem}
+.frontier-list{display:flex;flex-direction:column;gap:0.75rem;margin-top:1.5rem}
+.frontier-item{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;background:var(--warm-white);border:1px solid rgba(26,20,16,0.08)}
+.fi-marker{width:4px;height:4px;border-radius:50%;background:var(--amber);flex-shrink:0}
+.fi-text{font-size:0.875rem;color:#4a3f35;font-weight:300}
+
+/* CONTACT CTA */
+.contact-cta{padding:5rem 3rem;background:var(--night);text-align:center;position:relative;overflow:hidden}
+.contact-cta::before{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(200,131,42,0.07) 0%,transparent 70%)}
+.contact-cta h2{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);color:var(--cream);margin-bottom:0.75rem;position:relative}
+.contact-cta h2 em{color:var(--amber-light);font-style:italic}
+.contact-cta p{color:rgba(245,240,232,0.5);font-size:0.95rem;font-weight:300;margin-bottom:2.5rem;position:relative}
+.contact-cta-actions{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;position:relative}
+.btn-amber-lg{background:var(--amber);color:var(--night);padding:1rem 2.5rem;text-decoration:none;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;transition:background 0.2s;display:inline-block}
+.btn-amber-lg:hover{background:var(--amber-light)}
+.btn-ghost-lg{color:var(--cream);padding:1rem 2.5rem;text-decoration:none;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;border:1px solid rgba(245,240,232,0.2);transition:border-color 0.2s;display:inline-block}
+.btn-ghost-lg:hover{border-color:var(--amber-light)}
+
+/* FOOTER */
+footer{padding:2.5rem 3rem;border-top:1px solid rgba(26,20,16,0.1);display:flex;justify-content:space-between;align-items:center;background:var(--warm-white)}
+.footer-logo{font-family:var(--serif);font-size:0.95rem;color:var(--night)}
+.footer-logo span{color:var(--amber)}
+.footer-right{font-size:0.8rem;color:var(--dust)}
+.footer-right a{color:var(--amber);text-decoration:none}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.about-hero{animation:fadeUp 0.6s ease both}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  .about-hero{grid-template-columns:1fr}
+  .hero-text{padding:3.5rem 1.5rem;border-right:none;border-bottom:1px solid rgba(26,20,16,0.08)}
+  .hero-image{padding:2.5rem 1.5rem;min-height:340px}
+  .hero-image img{max-width:220px}
+  .story,.founder{grid-template-columns:1fr;gap:2.5rem;padding:3.5rem 1.5rem}
+  .founder-headshot,.founder-headshot-placeholder{width:140px;height:auto}
+  .founder-credentials{grid-template-columns:1fr 1fr}
+  .values{padding:3.5rem 1.5rem}
+  .values-grid{grid-template-columns:1fr 1fr}
+  .value-card:nth-child(2){border-right:none}
+  .value-card:nth-child(3),.value-card:nth-child(4){border-top:1px solid rgba(26,20,16,0.12)}
+  .frontier{padding:3.5rem 1.5rem}
+  .frontier-inner{grid-template-columns:1fr;gap:2.5rem}
+  .contact-cta{padding:3.5rem 1.5rem}
+  footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem 1.5rem}
+  .fence-line{padding:0 1.5rem}
+}
+</style>
 </head>
 <body>
-  <header>
-    <div class="hero">
-      <div class="hero-logo">
-        <img src="assets/logo.jpeg" alt="Digital Prairie Enterprises Logo">
+
+<nav>
+  <a href="index.html" class="nav-logo">Digital Prairie <span>Enterprises</span></a>
+  <ul class="nav-links">
+    <li><a href="products.html">Products</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Contact</a>
+</nav>
+
+<!-- HERO -->
+<div class="about-hero">
+  <div class="hero-text">
+    <div class="eyebrow">Our story</div>
+    <h1>Prairie roots.<br><em>Modern tools.</em><br>Built the right way.</h1>
+    <p>Digital Prairie Enterprises was born in Eastland, Texas — where folks still believe in steady work, clear thinking, and keeping your word. That's the ground we stand on, and it shapes every tool we build.</p>
+    <p>We're a small studio with a long view, building a family of apps designed to help people think straighter, map their ideas, and grow with purpose.</p>
+  </div>
+  <div class="hero-image">
+    <img src="logo.png" alt="Digital Prairie Enterprises — cyber cowboy mascot">
+  </div>
+</div>
+
+<div class="fence-line"><div class="fence-mark">Our story</div></div>
+
+<!-- STORY -->
+<section class="story">
+  <div>
+    <div class="story-label">Where we come from</div>
+    <h2>A polytechnical<br><em>homestead</em></h2>
+  </div>
+  <div class="story-body">
+    <p>Software is only the first fencepost. Digital Prairie Enterprises is laying out something bigger — a polytechnical homestead where learning, creativity, and steady growth all live under the same sky.</p>
+    <div class="story-pull">"Good tools should feel like good neighbors — helpful, dependable, and never in the way."</div>
+    <p>We believe technology ought to make life clearer, not louder. We believe small towns can build big things when the work is honest and the foundation is strong. And we believe the best software is the kind you forget you're using, because it just fits.</p>
+    <p>In time, this homestead will stretch beyond apps — into practical education, creative tools, training and workshops, and other work that helps folks build better lives. We're not chasing trends. We're building something meant to last.</p>
+  </div>
+</section>
+
+<div class="fence-line"><div class="fence-mark">The people</div></div>
+
+<!-- FOUNDER -->
+<section class="founder">
+  <div class="founder-headshot">
+    <img src="assets/headshot.jpg" alt="Allen Goodner" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div style="display:none;width:200px;height:240px;background:rgba(245,240,232,0.06);border:1px solid rgba(245,240,232,0.1);align-items:center;justify-content:center;font-family:var(--serif);font-size:3rem;color:rgba(245,240,232,0.2)">AG</div>
+  </div>
+  <div>
+    <div class="founder-tag">Founder &amp; Senior Architect</div>
+    <h2>Allen Goodner</h2>
+    <div class="founder-title">Eastland, Texas · 15+ years in software</div>
+
+    <p>Allen has deep roots in Eastland County — four generations and more have made their homes in Cisco, Eastland, and Ranger. He's a Christian, a husband, and a father, and he carries those roles with quiet pride. His family's long history in this county shows up in the way he works: steady, honest, and built for the long haul.</p>
+
+    <p>He's spent 15 years at the crossroads of software engineering and people leadership — guiding teams, shaping distributed architectures, and building systems that have to perform at scale. A claims engine rebuilt from 2,000 records per hour to 21,000. An integration layer that cut partner development time by 90%. Products shipped for healthcare, fintech, and retail at national scale.</p>
+
+    <p>Allen thinks hard about how tools should serve people, not the other way around. He's known for clear thinking, careful planning, and a knack for turning complex problems into something you can actually use.</p>
+
+    <div class="fractional-badge">
+      <div class="fractional-badge-dot"></div>
+      <div class="fractional-badge-text">Available for Fractional Architect / CTO engagements</div>
+    </div>
+
+    <div class="founder-credentials">
+      <div>
+        <div class="cred-num">15+</div>
+        <div class="cred-label">Years in production software</div>
       </div>
-      <div class="hero-content">
-        <h1 class="hero-title">About Us</h1>
-        <p class="hero-subtitle">
-          Prairie Roots. Modern Tools.<br>
-          Built the Right Way.
-        </p>
-        <nav>
-          <a href="/">Home</a>
-          <a href="/about.html" aria-current="page">About</a>
-          <a href="/products.html">Products</a>
-        </nav>
+      <div>
+        <div class="cred-num">90%</div>
+        <div class="cred-label">Dev time reduction, integration layer</div>
+      </div>
+      <div>
+        <div class="cred-num">10×</div>
+        <div class="cred-label">Throughput improvement, claims engine</div>
       </div>
     </div>
-  </header>
 
-  <main>
-    <!-- Our Story Section -->
-    <section class="values">
-      <h2>Our Story</h2>
-      <div class="value-list">
-        <div class="value-item">
-          <p>
-            Digital Prairie Enterprises was born in Eastland, Texas, where folks still believe in steady work, clear thinking, and keeping your word. That&rsquo;s the ground we stand on, and it shapes every tool we build.
-          </p>
-          <p>
-            We&rsquo;re a small studio with a long view. Our work centers on a multi-app ecosystem built to help people think straighter, map their ideas, and build habits that hold up over time. The first pieces include:
-            <ul>
-              <li><strong>Mindweave</strong> &mdash; a clean, quiet place to catch your thoughts and make sense of them</li>
-              <li><strong>Emergent MindMap</strong> &mdash; a wide-open space for exploring ideas and seeing how they fit together</li>
-              <li><strong>Habit-Building Tools</strong> &mdash; simple, steady companions that help folks grow in ways that last</li>
-            </ul>
-            Each tool stands on its own, but they&rsquo;re all cut from the same cloth: honest design, solid engineering, and a respect for the people who use them.
-          </p>
-        </div>
-        <div class="value-item">
-          <h3>A Broader Frontier</h3>
-          <p>
-            Software is only the first fencepost.<br>
-            Digital Prairie Enterprises is laying out a polytechnical homestead—a place where learning, creativity, and steady growth all live under the same sky. In time, this will stretch beyond apps into:
-          </p>
-          <ul>
-            <li>practical education</li>
-            <li>creative tools</li>
-            <li>training and workshops</li>
-            <li>other work that helps folks build better lives</li>
-          </ul>
-          <p>
-            We&rsquo;re not chasing trends. We&rsquo;re building something meant to last.
-          </p>
-        </div>
-        <div class="value-item">
-          <h3>How We See the Work</h3>
-          <p>
-            We believe good tools should feel like good neighbors—helpful, dependable, and never in the way. We believe technology ought to make life clearer, not louder. And we believe small towns can build big things when the work is honest and the foundation is strong.
-          </p>
-          <p>
-            Digital Prairie Enterprises crafts tools that stand steady in a noisy world. Tools with a Texas backbone.<br>
-            Tools built for folks who want to think, learn, and grow with purpose.
-          </p>
-        </div>
-      </div>
-    </section>
+    <div class="founder-cta">
+      <a href="contact.html" class="btn-amber">Work with Allen</a>
+      <a href="https://www.linkedin.com/in/allengoodner" target="_blank" rel="noopener" class="btn-ghost-light">LinkedIn →</a>
+    </div>
+  </div>
+</section>
 
-    <!-- Our People Section -->
-    <section class="products">
-      <h2>Our People</h2>
-      <div class="product-list">
-        <div class="product-item" style="display:flex;align-items:center;gap:1.6em;min-height:175px;">
-          <img src="assets/headshot.jpg" alt="Allen Goodner headshot" style="height:140px;width:140px;object-fit:cover;border-radius:9px;box-shadow:0 2px 8px rgba(36,28,19,0.13);background:#fff4;">
-          <div>
-            <h3 style="margin:0;padding:0 0 0.25em 0;">Allen Goodner <span style="font-weight:normal;color:var(--prairie-green);font-size:0.7em;">Founder &amp; Senior Architect</span></h3>
-            <p style="font-style:italic;margin:0 0 0.25em 0;">Eastland, Texas</p>
-            <p style="margin:0;">
-              Allen has deep roots in Eastland County—four generations and more have made their homes in Cisco, Eastland, and Ranger. Even when he wasn’t living here, this place stayed with him. He’s a Christian, a husband, and a father, and he carries those roles with quiet pride. His family’s long history in this county shows up in the way he works—steady, honest, and built for the long haul.
-            </p>
-            <p style="margin:0.5em 0 0 0;">
-              He’s spent years at the crossroads of software engineering and people leadership, guiding teams, shaping products, and helping folks grow. Allen thinks hard about how tools should serve people, not the other way around. He’s known for clear thinking, careful planning, and a knack for turning complex ideas into something you can actually use.
-            </p>
-            <p style="margin:0.5em 0 0 0;">
-              Around here, he’s the one setting the fenceposts—designing the systems, shaping the vision, and keeping the work pointed in the right direction. As Digital Prairie grows, he’ll make sure every new hand who joins the outfit shares the same backbone of faith, craft, and care.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+<div class="fence-line"><div class="fence-mark">What we stand on</div></div>
 
-  </main>
+<!-- VALUES -->
+<section class="values">
+  <div class="section-eyebrow">Core values</div>
+  <div class="section-title">Four words. No shortcuts.</div>
+  <div class="values-grid">
+    <div class="value-card">
+      <div class="value-letter">C</div>
+      <div class="value-name">Craft</div>
+      <div class="value-desc">We're proud of what we do, and we do it the right way — every time, without exception.</div>
+    </div>
+    <div class="value-card">
+      <div class="value-letter">C</div>
+      <div class="value-name">Community</div>
+      <div class="value-desc">We're all better when we work together. That goes for teams, products, and the people who use them.</div>
+    </div>
+    <div class="value-card">
+      <div class="value-letter">C</div>
+      <div class="value-name">Commitment</div>
+      <div class="value-desc">When we say it, we mean it. No asterisks, no fine print, no backing out when it gets hard.</div>
+    </div>
+    <div class="value-card">
+      <div class="value-letter">C</div>
+      <div class="value-name">Clarity</div>
+      <div class="value-desc">Good tools make life clearer, not louder. That's the whole idea, and we don't forget it.</div>
+    </div>
+  </div>
+</section>
 
-  <footer>
+<!-- BROADER FRONTIER -->
+<section class="frontier">
+  <div class="frontier-inner">
     <div>
-      &copy; Digital Prairie Enterprises. Built in Eastland, Texas.
+      <div class="section-eyebrow">Where we're headed</div>
+      <h2>A broader <em>frontier</em></h2>
+      <p>Software is only the first fencepost. Digital Prairie Enterprises is building a polytechnical homestead — a place where learning, creativity, and steady growth all live under the same sky.</p>
+      <p>In time, this will stretch well beyond apps:</p>
     </div>
-  </footer>
+    <div class="frontier-list">
+      <div class="frontier-item"><div class="fi-marker"></div><div class="fi-text">Practical education tools and curricula</div></div>
+      <div class="frontier-item"><div class="fi-marker"></div><div class="fi-text">Creative tools for makers and builders</div></div>
+      <div class="frontier-item"><div class="fi-marker"></div><div class="fi-text">Training programs and workshops</div></div>
+      <div class="frontier-item"><div class="fi-marker"></div><div class="fi-text">Other work that helps folks build better lives</div></div>
+      <div class="frontier-item"><div class="fi-marker"></div><div class="fi-text">A community grounded in the same four values</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT CTA -->
+<div class="contact-cta">
+  <h2>Let's build something <em>worth building</em></h2>
+  <p>Whether you want to use our tools, work with Allen, or just tip your hat — the door is open.</p>
+  <div class="contact-cta-actions">
+    <a href="contact.html" class="btn-amber-lg">Get in touch</a>
+    <a href="products.html" class="btn-ghost-lg">See the products</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Digital Prairie <span>Enterprises</span></div>
+  <div class="footer-right">© 2026 Digital Prairie Enterprises · Eastland, Texas · <a href="mailto:allen@digitalprairieenterprises.com">allen@digitalprairieenterprises.com</a></div>
+</footer>
+
 </body>
 </html>
