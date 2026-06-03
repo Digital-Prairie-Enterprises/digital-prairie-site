@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Eastland? · Digital Prairie Enterprises</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --night:#0e1624;--amber:#c8832a;--amber-light:#e8a84a;
+  --cream:#f5f0e8;--warm-white:#faf8f4;--dust:#b8a898;--text:#1a1410;
+  --serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',sans-serif;
+}
+body{background:var(--warm-white);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden}
+nav{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;border-bottom:1px solid rgba(26,20,16,0.1);background:var(--warm-white);position:sticky;top:0;z-index:100}
+.nav-logo{font-family:var(--serif);font-size:1.1rem;color:var(--night);text-decoration:none}
+.nav-logo span{color:var(--amber)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{text-decoration:none;color:var(--text);font-size:0.85rem;font-weight:400;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;transition:opacity 0.2s}
+.nav-links a:hover{opacity:1;color:var(--amber)}
+.nav-cta{background:var(--night);color:var(--cream);padding:0.5rem 1.25rem;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;font-weight:500;transition:background 0.2s}
+.nav-cta:hover{background:var(--amber)}
+.post-header{padding:5rem 3rem 4rem;background:var(--night);position:relative;overflow:hidden}
+.post-header::before{content:'';position:absolute;right:-100px;top:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(200,131,42,0.09) 0%,transparent 70%)}
+.back-link{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,240,232,0.4);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;position:relative}
+.back-link:hover{color:var(--amber-light)}
+.post-meta{font-size:0.78rem;color:rgba(245,240,232,0.4);margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;position:relative}
+.post-tag{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;background:rgba(200,131,42,0.15);color:var(--amber-light);padding:0.15rem 0.5rem;font-weight:500}
+.post-header h1{font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.6rem);color:var(--cream);line-height:1.12;max-width:800px;position:relative}
+.post-header h1 em{color:var(--amber-light);font-style:italic}
+.post-lede{font-size:1.1rem;color:rgba(245,240,232,0.55);font-weight:300;line-height:1.75;margin-top:1.25rem;max-width:640px;font-style:italic;position:relative}
+.post-body{max-width:720px;margin:0 auto;padding:4rem 3rem}
+.post-body p{font-size:1rem;color:#2a1f15;line-height:1.85;margin-bottom:1.5rem;font-weight:300}
+.post-body h2{font-family:var(--serif);font-size:1.5rem;color:var(--night);margin:3rem 0 1rem;font-weight:700;line-height:1.25}
+.post-body h3{font-family:var(--serif);font-size:1.2rem;color:var(--night);margin:2rem 0 0.75rem;font-weight:700}
+.post-body blockquote{border-left:3px solid var(--amber);padding:0.75rem 0 0.75rem 1.5rem;margin:2rem 0;font-family:var(--serif);font-size:1.15rem;font-style:italic;color:var(--night);line-height:1.55}
+.post-body hr{border:none;border-top:1px solid rgba(26,20,16,0.1);margin:3rem 0}
+.post-body a{color:var(--amber);text-decoration:none;border-bottom:1px solid rgba(200,131,42,0.3);transition:border-color 0.2s}
+.post-body a:hover{border-color:var(--amber)}
+.post-body strong{font-weight:500;color:var(--night)}
+.post-ending{font-family:var(--serif);font-size:1.05rem;font-style:italic;color:var(--night);line-height:2;margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(26,20,16,0.08)}
+.author-card{max-width:720px;margin:0 auto;padding:0 3rem 4rem}
+.author-inner{background:var(--cream);border:1px solid rgba(26,20,16,0.1);padding:1.75rem;display:flex;gap:1.5rem;align-items:flex-start}
+.author-avatar{width:56px;height:56px;border-radius:50%;background:var(--night);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.1rem;color:var(--amber-light);flex-shrink:0}
+.author-label{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--dust);font-weight:500;margin-bottom:0.3rem}
+.author-name{font-family:var(--serif);font-size:1rem;color:var(--night);font-weight:700;margin-bottom:0.4rem}
+.author-bio{font-size:0.85rem;color:#5a4a3a;line-height:1.65;font-weight:300}
+.author-links{display:flex;gap:1rem;margin-top:0.75rem}
+.author-links a{font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--amber);text-decoration:none;font-weight:500;border:none}
+.post-nav{max-width:720px;margin:0 auto;padding:0 3rem 4rem;display:flex;justify-content:space-between;border-top:1px solid rgba(26,20,16,0.08);padding-top:2rem}
+.post-nav a{font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--night);text-decoration:none;font-weight:500;opacity:0.6;transition:opacity 0.2s}
+.post-nav a:hover{opacity:1;color:var(--amber)}
+footer{padding:2.5rem 3rem;border-top:1px solid rgba(26,20,16,0.1);display:flex;justify-content:space-between;align-items:center;background:var(--warm-white)}
+.footer-logo{font-family:var(--serif);font-size:0.95rem;color:var(--night)}
+.footer-logo span{color:var(--amber)}
+.footer-right{font-size:0.8rem;color:var(--dust)}
+.footer-right a{color:var(--amber);text-decoration:none}
+@media(max-width:700px){
+  nav{padding:1rem 1.5rem}.nav-links{display:none}
+  .post-header{padding:3.5rem 1.5rem 3rem}
+  .post-body,.author-card,.post-nav{padding-left:1.5rem;padding-right:1.5rem}
+  footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Digital Prairie <span>Enterprises</span></a>
+  <ul class="nav-links">
+    <li><a href="../products.html">Products</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <a href="../contact.html" class="nav-cta">Contact</a>
+</nav>
+
+<div class="post-header">
+  <a href="../blog.html" class="back-link">← Back to the blog</a>
+  <div class="post-meta">
+    June 3, 2026 · Allen Goodner · <span class="post-tag">Texas life</span> <span class="post-tag">Building in public</span>
+  </div>
+  <h1>Why <em>Eastland?</em></h1>
+  <p class="post-lede">For that matter... "where" is Eastland? A confession, a map lesson, and the reason a tech company is being built in the middle of rural Texas.</p>
+</div>
+
+<div class="post-body">
+
+  <p>I have a confession to make. You see the DigitalPrairieEnterprises.com website with its cyber-rustic feel and my cyber-cowboy logo, and it's easy to think I'm a guy "from here." That's... only partially true. The fact is, I'm mostly a city slicker. I grew up in semi-rural Johnson County, in Cleburne, TX. We moved there when I was 3, and before that we had lived in Grand Prairie in the Dallas-Fort Worth Metroplex.</p>
+
+  <p>However, before you — like the cowboys from the old Pace Picante Sauce commercials — "get a rope"... I still have deep roots in rural Texas, especially Eastland.</p>
+
+  <h2>Where, exactly, is Eastland?</h2>
+
+  <p>For those who don't know — which is most of you — if you look at a map and put one finger on Weatherford (it's on Interstate 20, west of Dallas) and another finger on Abilene (same highway, further west) and then slide those fingers together at the same time until they touch in the middle... that's Eastland.</p>
+
+  <p>My Great-grandfather bought a farm here in the 1920s. My grandfather bought it from his parents, and turned it into a ranch. My mom and aunt bought it from Granny and Grampa, and now I live here with my wife and kids. I've been coming to Eastland — on visits and such — for my entire life, and now I live here. This place is home in a way that is only rivaled by Cleburne.</p>
+
+  <p>Which is a long way to say: I care deeply about Eastland.</p>
+
+  <h2>Why it matters</h2>
+
+  <p>Eastland County, and the city of Eastland, are very rural and pretty sparsely populated. We've got cattle, sheep, and goat ranches. There's a very little bit of manufacturing. And there's not a lot that the area can do to compete, economically, with the big cities. People here are okay with that. What they're not okay with is the fact that kids leave and then don't come back. We're family oriented. We want our young people to stay — or at least come back — and keep this a small-but-thriving community. The reality is that's hard in rural Texas.</p>
+
+  <p>Enter Digital Prairie Enterprises. The company is part of the community with plans to grow.</p>
+
+  <p>We can't compete in manufacturing or logistics. Most folks out here don't want huge solar or wind farms or water-draining (we already don't have enough to spare!) data centers. The livestock industry is very susceptible to weather and economic vagaries.</p>
+
+  <p>We <em>can</em> compete in the information economy. All you need is a mind for problem-solving and an internet connection, and you can compete with the biggest firms in the world. Software and websites don't care if you live in Dallas or Houston. Consumers don't care if you're based in New York City, or deep rural Texas. We can compete with anyone, and build a strong economy — here — for everyone. And that is our goal.</p>
+
+  <p>We will make Grade A products, able to compete on every professional measure. Products that help people. Products that make life better. And, in turn, we'll invest in our community.</p>
+
+  <hr>
+
+  <div class="post-ending">
+    <p>So, why Eastland? Because these are good people who deserve a chance to build a strong economy to support their strong family values. Because these people and this place are important to me.</p>
+    <p>Because I live here.</p>
+  </div>
+
+</div>
+
+<div class="author-card">
+  <div class="author-inner">
+    <div class="author-avatar">AG</div>
+    <div>
+      <div class="author-label">Written by</div>
+      <div class="author-name">Allen Goodner</div>
+      <div class="author-bio">Founder of Digital Prairie Enterprises. Solutions architect with 15+ years building distributed systems. Based in Eastland, Texas — four generations deep.</div>
+      <div class="author-links">
+        <a href="https://www.linkedin.com/in/allengoodner" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://allendgoodner.net" target="_blank" rel="noopener">Blog</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="post-nav">
+  <a href="../blog.html">← All posts</a>
+</div>
+
+<footer>
+  <div class="footer-logo">Digital Prairie <span>Enterprises</span></div>
+  <div class="footer-right">© 2026 Digital Prairie Enterprises · Eastland, Texas · <a href="mailto:allen@digitalprairieenterprises.com">allen@digitalprairieenterprises.com</a></div>
+</footer>
+
+</body>
+</html>
