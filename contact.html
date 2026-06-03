@@ -1,63 +1,437 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Contact | Digital Prairie Enterprises</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact & Consult · Digital Prairie Enterprises</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --night:#0e1624;--navy:#1a2b45;--amber:#c8832a;--amber-light:#e8a84a;
+  --teal:#1a6b6b;--teal-light:#2a9494;--cream:#f5f0e8;--warm-white:#faf8f4;
+  --dust:#b8a898;--text:#1a1410;
+  --serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',sans-serif;
+}
+body{background:var(--warm-white);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;border-bottom:1px solid rgba(26,20,16,0.1);background:var(--warm-white);position:sticky;top:0;z-index:100}
+.nav-logo{font-family:var(--serif);font-size:1.1rem;color:var(--night);text-decoration:none}
+.nav-logo span{color:var(--amber)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{text-decoration:none;color:var(--text);font-size:0.85rem;font-weight:400;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;transition:opacity 0.2s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:var(--amber)}
+.nav-cta{background:var(--amber);color:var(--night);padding:0.5rem 1.25rem;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;font-weight:500;transition:background 0.2s}
+.nav-cta:hover{background:var(--amber-light)}
+
+/* PAGE HEADER */
+.page-header{padding:5rem 3rem 4rem;background:var(--night);position:relative;overflow:hidden}
+.page-header::before{content:'';position:absolute;right:-100px;top:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(200,131,42,0.1) 0%,transparent 70%)}
+.eyebrow{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.75rem}
+.eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--amber)}
+.page-header h1{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.8rem);color:var(--cream);line-height:1.12;max-width:680px}
+.page-header h1 em{color:var(--amber-light);font-style:italic}
+.page-header p{color:rgba(245,240,232,0.5);font-size:1rem;font-weight:300;margin-top:1.25rem;max-width:520px;line-height:1.75}
+
+/* TWO-TRACK SECTION */
+.two-track{display:grid;grid-template-columns:1fr 1fr;min-height:60px}
+.track{padding:1.5rem 3rem;display:flex;align-items:center;gap:1rem;cursor:pointer;border-bottom:3px solid transparent;transition:all 0.2s}
+.track.left{background:var(--cream);border-right:1px solid rgba(26,20,16,0.1)}
+.track.right{background:var(--warm-white)}
+.track.active.left{border-bottom-color:var(--amber)}
+.track.active.right{border-bottom-color:var(--teal-light)}
+.track-icon{font-size:1.2rem}
+.track-text{}
+.track-label{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;color:var(--dust)}
+.track-title{font-family:var(--serif);font-size:1.05rem;color:var(--night);font-weight:700}
+
+/* FENCE */
+.fence-line{display:flex;align-items:center;gap:1.5rem;padding:0 3rem}
+.fence-line::before,.fence-line::after{content:'';flex:1;height:1px;background:rgba(26,20,16,0.1)}
+.fence-mark{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--dust);white-space:nowrap;padding:1.25rem 0}
+
+/* ── GENERAL CONTACT ── */
+.contact-section{padding:5rem 3rem;background:var(--cream);display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.contact-intro h2{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.4rem);color:var(--night);line-height:1.2;margin-bottom:1.25rem}
+.contact-intro h2 em{font-style:italic;color:var(--amber)}
+.contact-intro p{font-size:0.95rem;color:#4a3f35;line-height:1.85;font-weight:300;margin-bottom:1rem}
+.contact-channels{display:flex;flex-direction:column;gap:1rem;margin-top:2rem}
+.channel{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;background:var(--warm-white);border:1px solid rgba(26,20,16,0.08);text-decoration:none;transition:border-color 0.2s}
+.channel:hover{border-color:var(--amber)}
+.channel-icon{font-size:1rem;flex-shrink:0;width:20px;text-align:center}
+.channel-body{}
+.channel-label{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--dust);font-weight:500}
+.channel-val{font-size:0.9rem;color:var(--night);font-weight:400}
+
+/* FORM */
+.contact-form{display:flex;flex-direction:column;gap:1.25rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.field{display:flex;flex-direction:column;gap:0.4rem}
+.field label{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--dust);font-weight:500}
+.field input,.field textarea,.field select{padding:0.85rem 1rem;background:var(--warm-white);border:1px solid rgba(26,20,16,0.15);color:var(--text);font-family:var(--sans);font-size:0.9rem;outline:none;transition:border-color 0.2s;-webkit-appearance:none}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--amber)}
+.field textarea{resize:vertical;min-height:120px;line-height:1.6}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23b8a898' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem}
+.submit-btn{background:var(--night);color:var(--cream);padding:0.95rem 2rem;font-size:0.82rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;border:none;cursor:pointer;font-family:var(--sans);transition:background 0.2s;align-self:flex-start}
+.submit-btn:hover{background:var(--amber)}
+.form-note{font-size:0.78rem;color:var(--dust);line-height:1.6;margin-top:0.25rem}
+
+/* ── FRACTIONAL CTO ── */
+.consult-section{padding:5rem 3rem;background:var(--warm-white)}
+.consult-header{max-width:640px;margin-bottom:4rem}
+.consult-header h2{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);color:var(--night);line-height:1.2;margin-bottom:1rem}
+.consult-header h2 em{font-style:italic;color:var(--amber)}
+.consult-header p{font-size:0.95rem;color:#4a3f35;line-height:1.85;font-weight:300}
+.consult-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;margin-bottom:4rem}
+.consult-card{border:1px solid rgba(26,20,16,0.1);padding:1.75rem;transition:border-color 0.2s}
+.consult-card:hover{border-color:rgba(200,131,42,0.4)}
+.cc-num{font-family:var(--serif);font-size:2rem;color:var(--amber);opacity:0.4;font-weight:700;line-height:1;margin-bottom:0.75rem}
+.cc-title{font-family:var(--serif);font-size:1rem;color:var(--night);margin-bottom:0.5rem;font-weight:700}
+.cc-desc{font-size:0.85rem;color:#5a4a3a;line-height:1.65;font-weight:300}
+
+/* WHAT TO EXPECT */
+.expect{background:var(--night);padding:4rem 3rem;display:grid;grid-template-columns:auto 1fr;gap:4rem;align-items:start}
+.expect-label{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);font-weight:500;white-space:nowrap;padding-top:0.25rem}
+.expect-steps{display:flex;flex-direction:column;gap:0;counter-reset:steps}
+.expect-step{display:grid;grid-template-columns:40px 1fr;gap:1rem;padding:1.5rem 0;border-bottom:1px solid rgba(245,240,232,0.06)}
+.expect-step:last-child{border-bottom:none}
+.step-num{font-family:var(--serif);font-size:1.3rem;color:rgba(200,131,42,0.4);font-weight:700;line-height:1;padding-top:3px}
+.step-body{}
+.step-title{font-family:var(--serif);font-size:1rem;color:var(--cream);margin-bottom:0.3rem;font-weight:700}
+.step-desc{font-size:0.85rem;color:rgba(245,240,232,0.5);line-height:1.65;font-weight:300}
+
+/* CONSULT FORM */
+.consult-form-section{padding:5rem 3rem;background:var(--cream);display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.cf-intro h2{font-family:var(--serif);font-size:clamp(1.6rem,2.5vw,2.2rem);color:var(--night);line-height:1.2;margin-bottom:1rem}
+.cf-intro h2 em{font-style:italic;color:var(--amber)}
+.cf-intro p{font-size:0.95rem;color:#4a3f35;line-height:1.85;font-weight:300;margin-bottom:1rem}
+.avail-badge{display:inline-flex;align-items:center;gap:0.6rem;background:rgba(76,175,130,0.08);border:1px solid rgba(76,175,130,0.25);padding:0.4rem 0.9rem;margin-top:0.5rem}
+.avail-dot{width:6px;height:6px;border-radius:50%;background:#4caf82;animation:pulse 2s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.avail-text{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:#4caf82;font-weight:500}
+
+/* FOOTER */
+footer{padding:2.5rem 3rem;border-top:1px solid rgba(26,20,16,0.1);display:flex;justify-content:space-between;align-items:center;background:var(--warm-white)}
+.footer-logo{font-family:var(--serif);font-size:0.95rem;color:var(--night)}
+.footer-logo span{color:var(--amber)}
+.footer-right{font-size:0.8rem;color:var(--dust)}
+.footer-right a{color:var(--amber);text-decoration:none}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.page-header{animation:fadeUp 0.6s ease both}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  .page-header{padding:3.5rem 1.5rem 3rem}
+  .two-track{grid-template-columns:1fr}
+  .track.left{border-right:none;border-bottom:1px solid rgba(26,20,16,0.1)}
+  .contact-section,.consult-form-section{grid-template-columns:1fr;gap:2.5rem;padding:3.5rem 1.5rem}
+  .form-row{grid-template-columns:1fr}
+  .consult-section{padding:3.5rem 1.5rem}
+  .consult-grid{grid-template-columns:1fr 1fr}
+  .expect{grid-template-columns:1fr;gap:1.5rem;padding:3rem 1.5rem}
+  footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem 1.5rem}
+  .fence-line{padding:0 1.5rem}
+}
+</style>
 </head>
 <body>
-  <header>
-    <h1>Contact</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="products.html">Products</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="hero-content">
-        <h2 class="hero-title">Get in Touch</h2>
-        <p class="hero-subtitle">
-          Want to learn more about Digital Prairie Enterprises, our tools, or have a question? Drop us a line any time.
-        </p>
-        <a href="mailto:info@digitalprairieenterprises.com" class="cta-btn">Email Us</a>
-      </div>
-    </section>
-    <section class="values">
-      <h2>Our Roots</h2>
-      <p>
-        Digital Prairie Enterprises was born in Eastland, Texas, where folks still believe in steady work, clear thinking, and keeping your word. We’re a small studio with a long view, building tools and an ecosystem to help people think straighter, map ideas, and build lasting habits.
-      </p>
-      <p>
-        We believe good tools should feel like good neighbors—helpful, dependable, never in the way. Technology ought to make life clearer, not louder.
-      </p>
-      <ul class="value-list">
-        <li class="value-item">Honest design &amp; solid engineering</li>
-        <li class="value-item">Respect for the people who use our tools</li>
-        <li class="value-item">Roots in Texas, built for anywhere</li>
-      </ul>
-    </section>
-    <section class="values">
-      <h2>Who You'll Reach</h2>
-      <div class="value-list">
-        <div class="value-item">
-          <strong>Allen Goodner</strong><br>
-          Founder &amp; Senior Architect<br>
-          Eastland, Texas
-          <p>
-            Four generations deep, Allen’s family calls Cisco, Eastland, and Ranger home. He pairs software engineering with people leadership—guiding teams, shaping products, and always keeping the work pointed in the right direction.
-          </p>
+<nav>
+  <a href="index.html" class="nav-logo">Digital Prairie <span>Enterprises</span></a>
+  <ul class="nav-links">
+    <li><a href="products.html">Products</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta active">Contact</a>
+</nav>
+
+<div class="page-header">
+  <div class="eyebrow">Get in touch</div>
+  <h1>Two ways to<br>work with <em>Digital Prairie</em></h1>
+  <p>Whether you have a question about our products, want to follow the build, or need an experienced technical partner for your company — there's a door open for you.</p>
+</div>
+
+<div class="two-track">
+  <div class="track left active">
+    <div class="track-icon">✉</div>
+    <div class="track-text">
+      <div class="track-label">Products & general</div>
+      <div class="track-title">Send us a message</div>
+    </div>
+  </div>
+  <div class="track right">
+    <div class="track-icon">⬡</div>
+    <div class="track-text">
+      <div class="track-label">Technical leadership</div>
+      <div class="track-title">Fractional Architect / CTO</div>
+    </div>
+  </div>
+</div>
+
+<div class="fence-line"><div class="fence-mark">Products · General inquiries · Press</div></div>
+
+<!-- GENERAL CONTACT -->
+<section class="contact-section">
+  <div class="contact-intro">
+    <h2>Say <em>howdy</em></h2>
+    <p>Questions about PromptMe? Want to stay in the loop on what's coming next? Press inquiry, partnership idea, or you just want to tip your hat — we're glad to hear it.</p>
+    <p>Allen reads every message and responds personally. No form-letter replies, no support ticket queue.</p>
+    <div class="contact-channels">
+      <a href="mailto:allen@digitalprairieenterprises.com" class="channel">
+        <div class="channel-icon">✉</div>
+        <div class="channel-body">
+          <div class="channel-label">Email</div>
+          <div class="channel-val">allen@digitalprairieenterprises.com</div>
         </div>
-      </div>
-    </section>
-  </main>
+      </a>
+      <a href="https://www.linkedin.com/in/allengoodner" target="_blank" rel="noopener" class="channel">
+        <div class="channel-icon">in</div>
+        <div class="channel-body">
+          <div class="channel-label">LinkedIn</div>
+          <div class="channel-val">linkedin.com/in/allengoodner</div>
+        </div>
+      </a>
+      <a href="https://allendgoodner.net" target="_blank" rel="noopener" class="channel">
+        <div class="channel-icon">✎</div>
+        <div class="channel-body">
+          <div class="channel-label">Blog</div>
+          <div class="channel-val">allendgoodner.net</div>
+        </div>
+      </a>
+    </div>
+  </div>
 
-  <footer>
-    &copy; 2026 Digital Prairie Enterprises. Roots in Texas, built to last.
-  </footer>
+  <form class="contact-form" onsubmit="handleContact(event)">
+    <div class="form-row">
+      <div class="field">
+        <label for="name">Your name</label>
+        <input type="text" id="name" placeholder="Jane Smith" required>
+      </div>
+      <div class="field">
+        <label for="email">Email address</label>
+        <input type="email" id="email" placeholder="jane@example.com" required>
+      </div>
+    </div>
+    <div class="field">
+      <label for="subject">What's this about?</label>
+      <select id="subject">
+        <option value="">Select a topic…</option>
+        <option>PromptMe — question or feedback</option>
+        <option>PromptMe — bug report</option>
+        <option>Upcoming products — want to be notified</option>
+        <option>Partnership or collaboration</option>
+        <option>Press or media inquiry</option>
+        <option>Something else</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="message">Message</label>
+      <textarea id="message" placeholder="Say your piece…" required></textarea>
+    </div>
+    <button type="submit" class="submit-btn">Send it →</button>
+    <div class="form-note">No spam. No newsletters unless you ask. Just a real reply from Allen.</div>
+  </form>
+</section>
+
+<div class="fence-line"><div class="fence-mark">Fractional Architect · CTO · Technical Leadership</div></div>
+
+<!-- FRACTIONAL CTO -->
+<section class="consult-section">
+  <div class="consult-header">
+    <h2>Need a technical partner,<br>not a <em>full-time hire?</em></h2>
+    <p>Allen is available for Fractional Architect and Fractional CTO engagements — experienced technical leadership for teams that need the real thing without the full-time overhead. If you're scaling, rebuilding, or just trying to figure out the right path forward, this is what he does.</p>
+  </div>
+  <div class="consult-grid">
+    <div class="consult-card">
+      <div class="cc-num">01</div>
+      <div class="cc-title">Architecture & systems design</div>
+      <div class="cc-desc">Distributed systems, API design, microservices vs. monolith decisions, cloud architecture — get it right the first time.</div>
+    </div>
+    <div class="consult-card">
+      <div class="cc-num">02</div>
+      <div class="cc-title">Engineering leadership</div>
+      <div class="cc-desc">Hiring decisions, team structure, technical culture, code review processes, and keeping velocity without accruing debt.</div>
+    </div>
+    <div class="consult-card">
+      <div class="cc-num">03</div>
+      <div class="cc-title">Legacy modernization</div>
+      <div class="cc-desc">Untangling monoliths, migrating systems, cutting tech debt — with a clear plan, not a hope and a prayer.</div>
+    </div>
+    <div class="consult-card">
+      <div class="cc-num">04</div>
+      <div class="cc-title">Product & roadmap alignment</div>
+      <div class="cc-desc">Bridging the gap between what the business needs and what engineering can actually deliver.</div>
+    </div>
+    <div class="consult-card">
+      <div class="cc-num">05</div>
+      <div class="cc-title">AI-assisted development</div>
+      <div class="cc-desc">Practical implementation of AI tooling in your development workflow — not hype, just what actually moves the needle.</div>
+    </div>
+    <div class="consult-card">
+      <div class="cc-num">06</div>
+      <div class="cc-title">Team coaching & mentorship</div>
+      <div class="cc-desc">Raising the floor across your engineering org. When teammates do better, everyone's better for it.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT TO EXPECT -->
+<div class="expect">
+  <div class="expect-label">How it works</div>
+  <div class="expect-steps">
+    <div class="expect-step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">Tell me what you're working with</div>
+        <div class="step-desc">Fill out the intake form below. No pitch deck needed — just the honest situation and what you're trying to solve.</div>
+      </div>
+    </div>
+    <div class="expect-step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">A real conversation, no sales script</div>
+        <div class="step-desc">Allen schedules a straight talk about whether this is a good fit — what the engagement might look like, scope, and what success actually means.</div>
+      </div>
+    </div>
+    <div class="expect-step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">We agree on the shape of the work</div>
+        <div class="step-desc">Ongoing fractional CTO, a focused sprint, an architectural review, or something in between. Scoped to what you actually need.</div>
+      </div>
+    </div>
+    <div class="expect-step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <div class="step-title">Steady, honest work</div>
+        <div class="step-desc">No surprises, no scope creep without a conversation. Just reliable, experienced technical leadership — for as long as you need it.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONSULT INTAKE FORM -->
+<section class="consult-form-section">
+  <div class="cf-intro">
+    <h2>Start the <em>conversation</em></h2>
+    <p>Use this form for fractional CTO and architect inquiries. The more context you give, the more useful the first conversation will be.</p>
+    <p>Allen typically responds within one business day.</p>
+    <div class="avail-badge">
+      <div class="avail-dot"></div>
+      <div class="avail-text">Currently accepting new engagements</div>
+    </div>
+  </div>
+
+  <form class="contact-form" onsubmit="handleConsult(event)">
+    <div class="form-row">
+      <div class="field">
+        <label for="c-name">Your name</label>
+        <input type="text" id="c-name" placeholder="Jane Smith" required>
+      </div>
+      <div class="field">
+        <label for="c-email">Work email</label>
+        <input type="email" id="c-email" placeholder="jane@company.com" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="field">
+        <label for="c-company">Company</label>
+        <input type="text" id="c-company" placeholder="Acme Inc.">
+      </div>
+      <div class="field">
+        <label for="c-stage">Company stage</label>
+        <select id="c-stage">
+          <option value="">Select…</option>
+          <option>Pre-seed / idea stage</option>
+          <option>Seed / early startup</option>
+          <option>Series A–B</option>
+          <option>Growth / scaling</option>
+          <option>Established / mid-market</option>
+          <option>Enterprise</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <label for="c-need">What kind of help are you looking for?</label>
+      <select id="c-need">
+        <option value="">Select…</option>
+        <option>Fractional CTO (ongoing leadership)</option>
+        <option>Fractional Architect (systems & design)</option>
+        <option>Architectural review / assessment</option>
+        <option>Legacy modernization planning</option>
+        <option>Team coaching & process improvement</option>
+        <option>Product & engineering alignment</option>
+        <option>Not sure — want to talk it through</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="c-situation">Tell me about the situation</label>
+      <textarea id="c-situation" style="min-height:140px" placeholder="What's the challenge? What have you tried? What does success look like?" required></textarea>
+    </div>
+    <div class="field">
+      <label for="c-timeline">Timeline</label>
+      <select id="c-timeline">
+        <option value="">Select…</option>
+        <option>Urgent — need help now</option>
+        <option>Starting in the next month</option>
+        <option>Planning for next quarter</option>
+        <option>Just exploring options</option>
+      </select>
+    </div>
+    <button type="submit" class="submit-btn">Request a conversation →</button>
+    <div class="form-note">No commitment required. If it's not the right fit, Allen will tell you straight.</div>
+  </form>
+</section>
+
+<footer>
+  <div class="footer-logo">Digital Prairie <span>Enterprises</span></div>
+  <div class="footer-right">© 2026 Digital Prairie Enterprises · Eastland, Texas · <a href="mailto:allen@digitalprairieenterprises.com">allen@digitalprairieenterprises.com</a></div>
+</footer>
+
+<script>
+function handleContact(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.submit-btn');
+  btn.textContent = 'Message sent ✓';
+  btn.style.background = '#4caf82';
+  btn.style.cursor = 'default';
+  e.target.reset();
+  setTimeout(() => {
+    btn.textContent = 'Send it →';
+    btn.style.background = '';
+    btn.style.cursor = '';
+  }, 4000);
+}
+function handleConsult(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.submit-btn');
+  btn.textContent = 'Request received ✓';
+  btn.style.background = '#4caf82';
+  btn.style.cursor = 'default';
+  e.target.reset();
+  setTimeout(() => {
+    btn.textContent = 'Request a conversation →';
+    btn.style.background = '';
+    btn.style.cursor = '';
+  }, 4000);
+}
+
+// Tab switching
+document.querySelectorAll('.track').forEach(track => {
+  track.addEventListener('click', () => {
+    document.querySelectorAll('.track').forEach(t => t.classList.remove('active'));
+    track.classList.add('active');
+    const target = track.classList.contains('left')
+      ? document.querySelector('.contact-section')
+      : document.querySelector('.consult-section');
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
 </body>
 </html>
