@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>House Warming · Digital Prairie Enterprises</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --night:#0e1624;--amber:#c8832a;--amber-light:#e8a84a;
+  --cream:#f5f0e8;--warm-white:#faf8f4;--dust:#b8a898;--text:#1a1410;
+  --serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',sans-serif;
+}
+body{background:var(--warm-white);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden}
+nav{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;border-bottom:1px solid rgba(26,20,16,0.1);background:var(--warm-white);position:sticky;top:0;z-index:100}
+.nav-logo{font-family:var(--serif);font-size:1.1rem;color:var(--night);text-decoration:none}
+.nav-logo span{color:var(--amber)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{text-decoration:none;color:var(--text);font-size:0.85rem;font-weight:400;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;transition:opacity 0.2s}
+.nav-links a:hover{opacity:1;color:var(--amber)}
+.nav-cta{background:var(--night);color:var(--cream);padding:0.5rem 1.25rem;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;font-weight:500;transition:background 0.2s}
+.nav-cta:hover{background:var(--amber)}
+
+/* POST HEADER */
+.post-header{padding:5rem 3rem 4rem;background:var(--night);position:relative;overflow:hidden}
+.post-header::before{content:'';position:absolute;right:-100px;top:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(200,131,42,0.09) 0%,transparent 70%)}
+.back-link{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,240,232,0.4);text-decoration:none;margin-bottom:2rem;transition:color 0.2s;position:relative}
+.back-link:hover{color:var(--amber-light)}
+.post-meta{font-size:0.78rem;color:rgba(245,240,232,0.4);margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;position:relative}
+.post-tag{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;background:rgba(200,131,42,0.15);color:var(--amber-light);padding:0.15rem 0.5rem;font-weight:500}
+.post-header h1{font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.6rem);color:var(--cream);line-height:1.12;max-width:800px;position:relative}
+.post-header h1 em{color:var(--amber-light);font-style:italic}
+.post-lede{font-size:1.1rem;color:rgba(245,240,232,0.55);font-weight:300;line-height:1.75;margin-top:1.25rem;max-width:640px;font-style:italic;position:relative}
+
+/* POST BODY */
+.post-body{max-width:720px;margin:0 auto;padding:4rem 3rem}
+/* Prose styles */
+.post-body p{font-size:1rem;color:#2a1f15;line-height:1.85;margin-bottom:1.5rem;font-weight:300}
+.post-body h2{font-family:var(--serif);font-size:1.6rem;color:var(--night);margin:3rem 0 1rem;font-weight:700;line-height:1.25}
+.post-body h3{font-family:var(--serif);font-size:1.2rem;color:var(--night);margin:2rem 0 0.75rem;font-weight:700}
+.post-body ul,.post-body ol{padding-left:1.5rem;margin-bottom:1.5rem}
+.post-body li{font-size:1rem;color:#2a1f15;line-height:1.8;font-weight:300;margin-bottom:0.4rem}
+.post-body blockquote{border-left:3px solid var(--amber);padding:0.75rem 0 0.75rem 1.5rem;margin:2rem 0;font-family:var(--serif);font-size:1.15rem;font-style:italic;color:var(--night);line-height:1.55}
+.post-body code{background:var(--cream);padding:0.15rem 0.4rem;font-size:0.875em;font-family:monospace;color:var(--night)}
+.post-body pre{background:var(--night);padding:1.5rem;overflow-x:auto;margin:2rem 0}
+.post-body pre code{background:none;padding:0;color:rgba(245,240,232,0.85);font-size:0.875rem;line-height:1.7}
+.post-body hr{border:none;border-top:1px solid rgba(26,20,16,0.1);margin:3rem 0}
+.post-body a{color:var(--amber);text-decoration:none;border-bottom:1px solid rgba(200,131,42,0.3);transition:border-color 0.2s}
+.post-body a:hover{border-color:var(--amber)}
+.post-body strong{font-weight:500;color:var(--night)}
+
+/* ── CTA ── */
+  .post-cta {
+    background: #0a0a0a;
+    padding: 32px;
+    margin: 40px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .post-cta-label {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(138,255,138,0.5);
+  }
+  .post-cta p {
+    font-size: 16px;
+    color: #F5EEDC;
+    opacity: 0.85;
+    margin: 0;
+    line-height: 1.6;
+  }
+  .post-cta a.cta-btn {
+    display: inline-block;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #0a0a0a;
+    background: #00FF66;
+    padding: 11px 24px;
+    text-decoration: none;
+    margin-top: 4px;
+    align-self: flex-start;
+  }
+  .post-cta a.cta-btn:hover { opacity: 0.85; }
+
+/* ── PROMPTER VISUAL (inline) ── */
+  .prompter-inset {
+    background: #0a0a0a;
+    padding: 28px 32px;
+    margin: 32px 0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    line-height: 2;
+    border-left: 3px solid #00FF66;
+  }
+  .line-dim    { color: rgba(138,255,138,0.28); }
+  .line-prev   { color: rgba(138,255,138,0.45); }
+  .line-active { color: #8AFF8A; }
+  .line-next   { color: rgba(138,255,138,0.55); }
+  .word-highlight {
+    background: #00FF66;
+    color: #0a0a0a;
+    padding: 0 3px;
+    font-weight: 700;
+  }
+  .prompter-caption {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 11px;
+    color: var(--site-muted);
+    margin-top: -20px;
+    margin-bottom: 32px;
+    letter-spacing: 0.05em;
+  }
+
+/* AUTHOR CARD */
+.author-card{max-width:720px;margin:0 auto;padding:0 3rem 4rem}
+.author-inner{background:var(--cream);border:1px solid rgba(26,20,16,0.1);padding:1.75rem;display:flex;gap:1.5rem;align-items:flex-start}
+.author-avatar{width:56px;height:56px;border-radius:50%;background:var(--night);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.1rem;color:var(--amber-light);flex-shrink:0}
+.author-label{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--dust);font-weight:500;margin-bottom:0.3rem}
+.author-name{font-family:var(--serif);font-size:1rem;color:var(--night);font-weight:700;margin-bottom:0.4rem}
+.author-bio{font-size:0.85rem;color:#5a4a3a;line-height:1.65;font-weight:300}
+.author-links{display:flex;gap:1rem;margin-top:0.75rem}
+.author-links a{font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--amber);text-decoration:none;font-weight:500}
+
+/* BACK NAV */
+.post-nav{max-width:720px;margin:0 auto;padding:0 3rem 4rem;display:flex;justify-content:space-between;border-top:1px solid rgba(26,20,16,0.08);padding-top:2rem}
+.post-nav a{font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--night);text-decoration:none;font-weight:500;opacity:0.6;transition:opacity 0.2s}
+.post-nav a:hover{opacity:1;color:var(--amber)}
+
+footer{padding:2.5rem 3rem;border-top:1px solid rgba(26,20,16,0.1);display:flex;justify-content:space-between;align-items:center;background:var(--warm-white)}
+.footer-logo{font-family:var(--serif);font-size:0.95rem;color:var(--night)}
+.footer-logo span{color:var(--amber)}
+.footer-right{font-size:0.8rem;color:var(--dust)}
+.footer-right a{color:var(--amber);text-decoration:none}
+
+@media(max-width:700px){
+  nav{padding:1rem 1.5rem}.nav-links{display:none}
+  .post-header{padding:3.5rem 1.5rem 3rem}
+  .post-body,.author-card,.post-nav{padding-left:1.5rem;padding-right:1.5rem}
+  footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Digital Prairie <span>Enterprises</span></a>
+  <ul class="nav-links">
+    <li><a href="../products.html">Products</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+  </ul>
+  <a href="../contact.html" class="nav-cta">Contact</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════════
+     POST HEADER — fill in title, date, tag, lede
+     ═══════════════════════════════════════════════ -->
+<div class="post-header">
+  <a href="../blog.html" class="back-link">← Back to the blog</a>
+  <div class="post-meta">
+    June 12, 2026 · Allen Goodner · <span class="post-tag">Building in public</span>
+  </div>
+  <h1>House Warming</h1>
+  <p class="post-lede">
+    The first mile marker: PromptMe is in Closed Beta
+  </p>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     POST BODY — write your post below
+     Available elements:
+       <p>           — paragraph
+       <h2>          — section heading
+       <h3>          — sub-heading
+       <blockquote>  — pull quote
+       <ul>/<ol>     — lists
+       <code>        — inline code
+       <pre><code>   — code block
+       <hr>          — section break
+       <strong>      — bold emphasis
+     ═══════════════════════════════════════════════ -->
+<div class="post-body">
+
+  <p>
+    In my previous post, I explained why I build software in Eastland, Texas. Part of that is it's where I'm from in a very fundamental sense. And, where I come from, we celebrate accomplishments. Often by throwing a party (queue <a href="https://youtu.be/lnyH0H481Zk?si=ZTd18nBwLorimv7t">Oz's explanation of parties</a>). In this case, that's a little harder, but you can raise a bowl of banana pudding for us, if you want. Yes, Digital Prairie Enterprises has met a milestone.
+  </p>
+
+  <h2>PromptMe Closed Beta</h2>
+
+  <p>
+    PromptMe is first real test of the idea that rural communities can compete in the information economy, and I'm proud to announce that it has hit the first major milestone: it is in closed beta. You can hit <a href="https://promptme.digitialprairieenterprises.com">promptme.digitalprairieenterprises.com</a> and sign in with Google or your email address and a password. Click a button, paste a script, and you're off to the races - a voice tracking teleprompter with no app to install, no foot pedal, operator, or scrolling speed selector. Just your words tracked as you speak and aligned with your text.
+  </p>
+
+  <p>
+    That's the idea, anyway. Here's where we stand.
+  </p>
+
+  <h2>What it does</h2>
+
+  <p>The problem PromptMe solves is a very specific one. Every speaker or presenter is used to the problem. The more you improvise off your script, the harder it is to make sure you've hit everything. The more you rely on your script, the less present you are with your audience. Teleprompters solve that problem for politicians and high-bankroll types, but even they have a problem - they don't scroll on their own. Or, they do scroll on their own, but at a set speed and you sort of have to guess at how fast you are going to talk. For the rest of us, paper notes - or even notes on a tablet or phone - mean we have to look down and its easy to lose your place.</p>
+
+  <p>PromptMe solves this by listening to you through your microphone highlighting your exact position in the script in real-time. Line by line, word by word, it follows when you speak. When you pause, the scroll pauses. When you speak, it resumes right where you were. </p>
+
+  <p>It runs in any modern browser. On Android and iOS, you can install it to your home screen for a full-screen experience.</p>
+
+  <div class="prompter-inset">
+    <div class="line-dim">The most important thing a speaker can do</div>
+    <div class="line-prev">is stay present with the room.</div>
+    <div class="line-active">That means your <span class="word-highlight">eyes</span> have to be up —</div>
+    <div class="line-next">not hunting for your place on the page.</div>
+    <div class="line-dim">PromptMe holds your place for you.</div>
+  </div>
+  <p class="prompter-caption">What the prompter screen looks like mid-session. Current word highlighted; surrounding lines dimmed.</p>
+
+  <p>At least... that's the theory.</p>
+
+  <p>The current state is somewhat more nuanced.</p>
+
+  <h2>What's working well</h2>
+
+  <p>The core loop works. Sign in, create a script, click into Prompter Mode, hit start, start talking. Five steps from zero to presenting with authority. Pause and resume detection work. When you stop, the scrolling stops. When you start, it starts. The clean terminal-like interface works. Nothing competes with your words.</p>
+
+  <p>Scripts save and sync across devices. As long as you use the same login, your scripts are available. Write on your laptop, then prompt from your phone or tablet. Free tier gives you five scripts and full speech tracking. There's no trial period, no watermark, no "upgrade to unlock" the feature you're really looking for. Because companies that do that are The Worst(TM).</p>
+
+  <p>That speech tracking is fairly basic. It is the free tier, and that requires some limitations. I'm not made of money. Yet.</p>
+
+  <p>Enhanced speech tracking is on the Pro tier. That is currently available to a select number of users, but it makes a real difference. Free tier uses on-device processing and a static language model. That means it is going to trail your voice by up to a few seconds, and it really struggles with repeated phrases and proper nouns (not that anyone outside of Texas knows how to pronounce Mexia anyway). The Pro tier brings that lag to sub-second, and is much better about obscure words or proper nouns.</p>
+
+  <blockquote>
+    Free tier gives you five scripts and full speech tracking. There's no trial period, no watermark, no "upgrade to unlock" the feature you're really looking for. Because companies that do that are The Worst(TM)
+  </blockquote>
+
+  <h2>What isn't working... yet</h2>
+
+  <p>
+    I'm dedicated to honesty and clarity, so here's the list of what isn't verified, is buggy, or is known not to work yet. If you're going to use it, you should know what to expect.
+  </p>
+
+  <ul>
+    <li><b>Free tier tracking lag.</b> I mentioned this earlier, but it's important to know that the free tier is kind of laggy. One to two seconds - sometimes more, but not often, is a lot when you're trying to give a presentation. This is especially noticeable on fast sections. The Pro tier pretty well fixes this.</li>
+    <li><b>Short lines track better than long.</b> Aim for about six to twelve words - and only one thought - per line. If you paste a wall of text, you'll get poor tracking. Breaking up the script into smaller lines takes a fair amount of work - I know. It is, however, worth it when you're trying to give your presentation.</li>
+    <li><b>Parallel phrases are... tricky.</b> So are proper nouns or obscure words, especially on the free tier. The fact is there are limits to what the computer can do - it can't actually read your mind yet - so it has to evaluate what was picked up by your microphone and parsed against your tokenized speech. For some presentations, this is fine, and you'll never notice. For others, especially those with repeated phrases, it can cause problems. The closer together the repetition, the worse it is. This known issue is on the roadmap.</li>
+    <li><b>Background noise affects accuracy.</b> Background TV, traffic, other people speaking, the air conditioning vent being three feet from your microphone... these can all degrade accuracy. A good microphone with white noise squelching helps. So does a quiet room.</li>
+    <li><b>iOS is untested.</b> I haven't tested PromptMe on iPhone or iPad. Safari's audio handling is very different from Chrome, and I anticipate issues. I would love for someone to try iOS and let me know exactly how broken it is. Your feedback would shape iOS support going forward.</li>
+  </ul>
+
+  <p>
+    None of these should be dealbreakers for the product. This is just the honest state of the beta. I'm being transparent and honest because I've made a commitment to do those things <em>and</em> because if you're willing to beta test and give me feedback, you deserve to know what's what.
+  </p>
+
+  <h2>What's in it for me?</h2>
+
+  <p>I'm asking for beta testers to use PromptMe for real content. A real sermon. A real lecture. A real podcast episode. Not just a demo or a test script, but real usage. Play with it first, certainly, because if it's too broken for you, that's good feedback, too. But, assuming it's usable, the feedback that will actually help is from real usage. That's the only sort of feedback that will help me build something worth building.</p>
+
+  <p>
+    The questions I care about most aren't "is it impressive" or "is the UI clean." I'm reasonably happy with both of those things, or you wouldn't be seeing it yet. No, I need these questions answered:
+  </p>
+
+  <ul>
+    <li>Does it keep up with you well enough to really use? If it's just too slow or (less likely) jumps too far ahead, I need to know that.</li>
+    <li>Does it lose your place - and, if yes, what were you saying and what did your script say? A good 12 lines of context will go a long way to help me troubleshoot any issues.</li>
+    <li>When you stopped speaking deliberately, did the scroll stop? Did it start again when you started speaking again?</li>
+    <li><b>Would you use it again the next time you stand up to speak?</b> If not, why not. What does it need to do differently?</li>
+  </ul>
+
+  <h2>What's in it for you</h2>
+
+  <p>I'm not asking you to do this out of the goodness of your hearts. Okay, yes I am, but I also know that if you're going to help me, I should help you. For those who are accepted into the closed beta (there are limited slots), you will have free access to the Pro tier for the duration of the beta, and one year after full go-live. You'll also get to help shape the product as it moves forward.</p>
+
+  <h2>What's coming</h2>
+
+  <p>
+    First up is the Pro tier. This sort-of exists today, but will be limited to those accepted into the closed beta. Once we go live, look for a price-point around $10/mo. Exact pricing isn't set, and I'm sure I'll have a pre-pay discount for people who sign up for longer terms. Current Pro tier is the better, more responsive speech model that tracks better, and unlimited scripts. Coming up before go-live will also be session metrics, filler word counter, and pacing notes.
+  </p>
+
+  <p>
+    After Pro is up, the roadmap includes a Premium tier. This will include everything in Pro, plus <b>Script Feedback</b> (AI analysis of your script before you speak) and <b>Record and Coach</b> (AI delivery analysis after a practice session - will require uploading a recording). The goal is to make everything about preparing and delivering your speech or presentation easier, all without having to consult a live coach.
+  </p>
+
+  <p>
+    An enhanced settings screen, iOS-tested build, and an offline mode for Pro and Premium users are all on the roadmap as well.
+  </p>
+
+  <hr>
+
+  <h2>How to get in</h2>
+
+  <p>
+    PromptMe is available at <a href="https://promptme.digitalprairieenterprises.com">promptme.digitalprairieenterprises.com</a> Sign in with Google or create an account. The Free tier is open to anyone. If you are willing to provide beta feedback, email me at <a href="mailto:allen@digitalprairieenterprises.com">allen@digitalprairieenterprises.com</a> and let me know how you speak - what you do, what you're hoping PromptMe will help with. I'll be in touch.
+  </p>
+
+  <div class="post-cta">
+    <div class="post-cta-label">PromptMe · Closed Beta</div>
+    <p>Try it free in your browser. No install, no credit card. Paste a script and start speaking.</p>
+    <a class="cta-btn" href="https://promptme.digitalprairieenterprises.com">Open PromptMe →</a>
+  </div>
+
+</div>
+
+<!-- AUTHOR CARD — update bio if needed, otherwise leave as-is -->
+<div class="author-card">
+  <div class="author-inner">
+    <div class="author-avatar">AG</div>
+    <div>
+      <div class="author-label">Written by</div>
+      <div class="author-name">Allen Goodner</div>
+      <div class="author-bio">Founder of Digital Prairie Enterprises. Solutions architect with 15+ years building distributed systems. Based in Eastland, Texas.</div>
+      <div class="author-links">
+        <a href="https://www.linkedin.com/in/allen-goodner" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://allendgoodner.net" target="_blank" rel="noopener">Blog</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="post-nav">
+  <a href="../blog.html">← All posts</a>
+  <a href="posts/why-eastland.html">Previous Post</a>
+  <!-- Optionally link to prev/next post:
+  <a href="posts/why-eastland.html">Previous Post</a>
+  -->
+</div>
+
+<footer>
+  <div class="footer-logo">Digital Prairie <span>Enterprises</span></div>
+  <div class="footer-right">© 2026 Digital Prairie Enterprises · Eastland, Texas · <a href="mailto:allen@digitalprairieenterprises.com">allen@digitalprairieenterprises.com</a></div>
+</footer>
+
+</body>
+</html>
